@@ -57,3 +57,24 @@ To handle different input sizes and states efficiently, the project implements f
 The project is equipped with a `Makefile`. To compile the main program:
 ```bash
 make
+```
+## 📊 Visual Summary of Adaptive Execution
+
+| Disorder Index | Data State | Selected Strategy | Expected Output |
+|----------------|------------|-------------------|-----------------|
+| `0.00 - 0.19` | Nearly Sorted | Linear O(n) | Minor local swaps |
+| `0.20 - 0.49` | Medium Chaos | Chunks O(n√n) | Block groupings |
+| `0.50 - 1.00` | Full Chaos | Radix/Merge O(n log n) | Heavy stack passing |
+
+
+## 🖋️ Commit Conventions
+
+During the development of this project, a standardized commit history was maintained to identify changes easily:
+
+| Prefix       | Description                                              |
+|--------------|----------------------------------------------------------|
+| `[FEAT]`     | To add a new functionality                               |
+| `[FIX]`      | To fix an error or bug                                   |
+| `[REFACTOR]` | Internal improvements without changing functionality     |
+| `[DOCS]`     | For documentation changes                                |
+| `[TEST]`     | To add or modify tests                                   |
