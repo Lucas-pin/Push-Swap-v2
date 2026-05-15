@@ -26,7 +26,7 @@ Rather than just writing a single sorting function, this project implements a dy
 To handle different input sizes and states efficiently, the project implements four distinct sorting architectures.The complexity is measured strictly by the number of stack operations generated.
 
 ### 1. Simple Sort $O(n^2)$
-- Baseline algorithm (e.g., Insertion or Selection sort adaptation)[cite: 184, 185, 186].
+- Baseline algorithm (e.g., Insertion or Selection sort adaptation).
 - **Advantages:** Easy to implement, zero overhead for extremely small sets.
 - **Disadvantages:** Scales terribly. Unusable for large datasets.
 
@@ -58,6 +58,71 @@ The project is equipped with a `Makefile`. To compile the main program:
 ```bash
 make
 ```
+
+### Basic Execution
+
+To run the program, pass a list of integers as arguments. The program will output the sequence of operations required to sort the stack.
+
+```bash
+# Using multiple arguments
+./push_swap 4 67 3 87 23
+
+# Using a single string argument
+./push_swap "4 67 3 87 23"
+```
+
+### Execution with Flags
+
+The program supports specific flags to force algorithmic strategies or enable a benchmark mode. By default, if no strategy is specified, it uses `--adaptive`.
+
+**Strategy Selectors:**
+- `--simple`: Forces the use of the $O(n^2)$ algorithm.
+- `--medium`: Forces the use of the $O(n\sqrt{n})$ algorithm.
+- `--complex`: Forces the use of the $O(n \log n)$ algorithm.
+- `--adaptive`: Forces the use of the dynamic, disorder-based algorithm (default behavior).
+
+**Benchmark Mode:**
+- `--bench`: Outputs detailed execution statistics to `stderr`. It displays:
+  - The disorder index (percentage with two decimal places).
+  - The name and complexity class of the chosen strategy.
+  - Total number of operations performed.
+  - A count breakdown of each specific operation used (`sa`, `sb`, `ss`, `pa`, `pb`, `ra`, `rb`, `rr`, `rra`, `rrb`, `rrr`).
+
+```bash
+# Example using a strategy selector
+./push_swap --complex 4 67 3 87 23
+
+# Example using benchmark mode: hiding operations (piped to checker) and saving metrics
+shuf -i 0-9999 -n 500 > args.txt ; ./push_swap --bench $(cat args.txt) 2> bench.txt | ./checker_linux $(cat args.txt)
+cat bench.txt
+# [bench] disorder:  49.93%
+# [bench] strategy:  Adaptive / O(n√n)
+# [bench] total_ops: 7997
+# [bench] sa:   0  sb:   0  ss:   0  pa: 500  pb: 500
+# [bench] ra: 4840  rb: 1098  rr:   0 rra:   0 rrb: 1059 rrr:   0
+
+# Example defining input string, using full flags, and verifying with checker
+ARG="4 67 3 87 23"; ./push_swap --bench --adaptive $ARG 2> bench.txt | ./checker_linux $ARG
+cat bench.txt
+# [bench] disorder:  40.00%
+# [bench] strategy:  Adaptive / O(n√n)
+# [bench] total_ops: 13
+# [bench] sa:   0  sb:   0  ss:   0  pa:   5  pb:   5
+# [bench] ra:   2  rb:   1  rr:   0 rra:   0 rrb:   0 rrr:   0
+```
+
+### Error Handling
+
+In case of an error (e.g., non-integer arguments, arguments outside the standard integer range, or duplicated numbers), the program will print `"Error\n"` to the standard error output (`stderr`). If no parameters are provided, the program resolves cleanly without output, returning control to the user.
+
+### Using the Checker (Bonus)
+
+If you have compiled the bonus part (`make bonus`), you can pipe the output to verify if the list is sorted correctly:
+
+```bash
+ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker $ARG
+```
+
 ## 📊 Visual Summary of Adaptive Execution
 
 | Disorder Index | Data State | Selected Strategy | Expected Output |
