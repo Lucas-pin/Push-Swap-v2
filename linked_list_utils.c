@@ -1,0 +1,52 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   linked_list_utils.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/16 20:29:07 by lupin             #+#    #+#             */
+/*   Updated: 2026/05/16 20:50:50 by lupin            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+int	lst_size(t_stack *lst)
+{
+	int		size;
+	t_stack	*aux;
+
+	size = 0;
+	aux = lst;
+	while (lst)
+	{
+		aux = aux->next;
+		size++;
+	}
+	return (size);
+}
+
+t_stack	*last_node(t_stack *lst)
+{
+	t_stack	*node;
+
+	node = lst;
+	if (!lst)
+		return (NULL);
+	while (node->next)
+		node = node->next;
+	return (node);
+}
+
+t_stack	*first_node(t_stack *lst)
+{
+	t_stack	*node;
+
+	node = lst;
+	if (!lst)
+		return (NULL);
+	while (node->prev)
+		node = node->prev;
+	return (node);
+}
