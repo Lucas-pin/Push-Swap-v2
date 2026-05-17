@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 21:05:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/16 21:18:26 by lupin            ###   ########.fr       */
+/*   Updated: 2026/05/17 14:05:30 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_stack
  * @param content Value to store in the new node.
  * @return Pointer to the newly allocated node, or NULL on failure.
  */
-t_stack	*new_node(int content);
+t_stack	*new_node(const int content);
 
 /**
  * @brief Adds the node `new` at the beginning of the list represented by `lst`.
@@ -55,26 +55,33 @@ void	add_node_back(t_stack **lst, t_stack *new);
  * @param lst Pointer to any node of the list (function walks the list).
  * @return Number of elements in the list.
  */
-int		lst_size(t_stack *lst);
+int		lst_size(const t_stack *lst);
 
 /**
  * @brief Returns the last node in the list.
  * @param lst Pointer to any node of the list.
  * @return Pointer to the last node, or NULL if list is empty.
  */
-t_stack	*last_node(t_stack *lst);
+t_stack	*last_node(const t_stack *lst);
 
 /**
  * @brief Returns the first node in the list.
  * @param lst Pointer to any node of the list.
  * @return Pointer to the first node, or NULL if list is empty.
  */
-t_stack	*first_node(t_stack *lst);
+t_stack	*first_node(const t_stack *lst);
 
-void	free_stack(t_stack **lst);
 /**
- * @brief It free the whole memory allocated for the list.
+ * @brief It frees the whole memory allocated for the list.
  * @param lst Pointer to any node of the list.
  */
+void	free_stack(t_stack **lst);
+
+/**
+ * @brief Make the list if all is okey and memory can be allocated.
+ * @param argv which is the array of strings use like numbers.
+ * @return List is all is okey, NULL in other case.
+ */
+t_stack	*build_list(char **argv);
 
 #endif

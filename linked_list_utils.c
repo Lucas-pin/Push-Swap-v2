@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 20:29:07 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/17 13:30:46 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/17 14:30:22 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_stack	*last_node(const t_stack *lst)
 		return (NULL);
 	while (lst->next)
 		lst = lst->next;
-	return (lst);
+	return ((t_stack *)lst);
 }
 
 t_stack	*first_node(const t_stack *lst)
@@ -40,5 +40,5 @@ t_stack	*first_node(const t_stack *lst)
 		return (NULL);
 	while (lst->prev)
 		lst = lst->prev;
-	return (lst);
+	return ((t_stack *)lst);
 }
