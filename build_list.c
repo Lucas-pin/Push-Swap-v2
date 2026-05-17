@@ -37,14 +37,13 @@ static int	is_valid(const char *str)
 			sign = -1;
 		++str;
 	}
-	if (!ft_only_digits(str) || (ft_strlen(str) > 10))
+	while(*str == '0')
+		++str;
+	if (!ft_only_digits(str) || (ft_strlen(str) > 10) || ft_strlen(str) < 1)
 		return (0);
 	control = 0;
 	while (*str)
-	{
-		control = control * 10 + (*str - '0');
-		++str;
-	}
+		control = control * 10 + (*(str++) - '0');
 	control *= sign;
 	if ((control < -2147483648) || (control > 2147483647))
 		return (0);
