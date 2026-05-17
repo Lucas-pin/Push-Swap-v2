@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 20:50:26 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/17 13:31:00 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/17 13:33:20 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ void	add_node_back(t_stack **lst, t_stack *new)
 
 void	free_stack(t_stack **lst)
 {
-	t_stack *current;
-	t_stack *next_node;
+	t_stack	*current;
+	t_stack	*next_node;
 
 	if (!*lst)
 		return ;
 	current = first_node(*lst);
-	while(current)
+	while (current)
 	{
 		next_node = current->next;
 		free(current);
