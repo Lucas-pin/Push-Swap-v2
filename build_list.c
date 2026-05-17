@@ -12,27 +12,6 @@
 
 #include "push_swap.h"
 
-static int	valid_args(const char **argv)
-{
-	while (*argv)
-	{
-		if (!is_valid(*argv))
-			return (0);
-		++argv;
-	}
-	return (1);
-}
-
-static int	ft_strlen(const char *str)
-{
-	int	cont;
-
-	cont = 0;
-	while (str[cont])
-		++cont;
-	return (cont);
-}
-
 static int	ft_only_digits(const char *str)
 {
 	while (*str)
@@ -47,11 +26,17 @@ static int	ft_only_digits(const char *str)
 static int	is_valid(const char *str)
 {
 	long	control;
+	int		sign;
 
+	sign = 1;
 	while (*str && (*str == 32 || (*str >= 9 && *str <= 13)))
 		++str;
 	if (*str == '-' || *str == '+')
+	{
+		if (*str == '-')
+			sign = -1;
 		++str;
+	}
 	if (!ft_only_digits(str) || (ft_strlen(str) > 10))
 		return (0);
 	control = 0;
@@ -60,9 +45,41 @@ static int	is_valid(const char *str)
 		control = control * 10 + (*str - '0');
 		++str;
 	}
+	control *= sign;
 	if ((control < -2147483648) || (control > 2147483647))
 		return (0);
 	return (1);
+}
+
+static int	valid_args(char **argv)
+{
+	while (*argv)
+	{
+		if (!is_valid(*argv))
+			return (0);
+		++argv;
+	}
+	return (1);
+}
+
+static int	repeat_args(const t_stack *lst)
+{
+	t_stack *i;
+	t_stack *j;
+
+	i = first_node(lst);
+	while (i)
+	{
+		j = i->next;
+		while (j)
+		{
+			if (i->value == j->value)
+				return (1);
+			j = j->next;
+		}
+		i = i->next;
+	}
+	return (0);
 }
 
 t_stack	*build_list(char **argv)
@@ -70,18 +87,24 @@ t_stack	*build_list(char **argv)
 	t_stack	*lst;
 	t_stack	*new;
 
-	if (!is_valid(argv))
+	lst = NULL;
+	if (!valid_args(argv))
 		return (NULL);
 	while (*argv)
 	{
 		new = new_node(ft_atoi(*argv));
 		if (!new)
 		{
-			free(lst);
+			free_stack(&lst);
 			return (NULL);
 		}
 		add_node_back(&lst, new);
 		++argv;
+	}
+	if (repeat_args(lst))
+	{
+		free_stack(&lst);
+		return (NULL);
 	}
 	return (lst);
 }
