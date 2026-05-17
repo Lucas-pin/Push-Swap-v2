@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 20:50:26 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/16 20:51:01 by lupin            ###   ########.fr       */
+/*   Updated: 2026/05/17 13:31:00 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*new_node(int content)
+t_stack	*new_node(const int content)
 {
 	t_stack	*nodo;
 

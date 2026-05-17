@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 20:29:07 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/16 20:50:50 by lupin            ###   ########.fr       */
+/*   Updated: 2026/05/17 13:30:46 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	lst_size(t_stack *lst)
+int	lst_size(const t_stack *lst)
 {
 	int		size;
 
@@ -25,7 +25,7 @@ int	lst_size(t_stack *lst)
 	return (size);
 }
 
-t_stack	*last_node(t_stack *lst)
+t_stack	*last_node(const t_stack *lst)
 {
 	if (!lst)
 		return (NULL);
@@ -34,7 +34,7 @@ t_stack	*last_node(t_stack *lst)
 	return (lst);
 }
 
-t_stack	*first_node(t_stack *lst)
+t_stack	*first_node(const t_stack *lst)
 {
 	if (!lst)
 		return (NULL);
