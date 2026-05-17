@@ -6,13 +6,15 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 21:05:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/17 14:05:30 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/17 18:22:44 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "libft/libft.h"
+# include "libft/ft_printf.h"
+# include "libft/get_next_line.h"
 
 /**
  * @struct s_stack
