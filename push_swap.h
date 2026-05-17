@@ -34,7 +34,7 @@ typedef struct s_stack
  * @param content Value to store in the new node.
  * @return Pointer to the newly allocated node, or NULL on failure.
  */
-t_stack	*new_node(long content);
+t_stack	*new_node(int content);
 
 /**
  * @brief Adds the node `new` at the beginning of the list represented by `lst`.
@@ -70,5 +70,11 @@ t_stack	*last_node(t_stack *lst);
  * @return Pointer to the first node, or NULL if list is empty.
  */
 t_stack	*first_node(t_stack *lst);
+
+void	free_stack(t_stack **lst);
+/**
+ * @brief It free the whole memory allocated for the list.
+ * @param lst Pointer to any node of the list.
+ */
 
 #endif

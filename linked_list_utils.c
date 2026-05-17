@@ -15,13 +15,11 @@
 int	lst_size(t_stack *lst)
 {
 	int		size;
-	t_stack	*aux;
 
 	size = 0;
-	aux = lst;
 	while (lst)
 	{
-		aux = aux->next;
+		lst = lst->next;
 		size++;
 	}
 	return (size);
@@ -29,24 +27,18 @@ int	lst_size(t_stack *lst)
 
 t_stack	*last_node(t_stack *lst)
 {
-	t_stack	*node;
-
-	node = lst;
 	if (!lst)
 		return (NULL);
-	while (node->next)
-		node = node->next;
-	return (node);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }
 
 t_stack	*first_node(t_stack *lst)
 {
-	t_stack	*node;
-
-	node = lst;
 	if (!lst)
 		return (NULL);
-	while (node->prev)
-		node = node->prev;
-	return (node);
+	while (lst->prev)
+		lst = lst->prev;
+	return (lst);
 }
