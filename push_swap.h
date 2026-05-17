@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 21:05:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/16 21:18:26 by lupin            ###   ########.fr       */
+/*   Updated: 2026/05/17 13:57:44 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,17 @@ t_stack	*last_node(t_stack *lst);
  */
 t_stack	*first_node(t_stack *lst);
 
-void	free_stack(t_stack **lst);
 /**
- * @brief It free the whole memory allocated for the list.
+ * @brief It frees the whole memory allocated for the list.
  * @param lst Pointer to any node of the list.
  */
+void	free_stack(t_stack **lst);
+
+/**
+ * @brief Make the list if all is okey and memory can be allocated.
+ * @param argv which is the array of strings use like numbers.
+ * @return List is all is okey, NULL in other case.
+ */
+t_stack		*build_list(char **argv);
 
 #endif
