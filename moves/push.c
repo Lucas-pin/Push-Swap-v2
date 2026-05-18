@@ -6,7 +6,7 @@
 /*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 21:11:11 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/18 21:36:02 by lupin            ###   ########.fr       */
+/*   Updated: 2026/05/18 21:39:24 by lupin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static t_stack	*isolate(t_stack **lst)
 	return (aux);
 }
 
-void	push(t_stack **dst, t_stack **src)
+static void	push(t_stack **dst, t_stack **src)
 {
 	if (!dst || !src)
 		return ;
@@ -40,7 +40,7 @@ void	pb(t_stack *stack_a, t_stack *stack_b)
 	t_stack	*first_a;
 	t_stack	*first_b;
 
-	if (!stack_a || !stack_b)
+	if (!stack_b)
 		return ;
 	first_a = first_node(stack_a);
 	first_b = first_node(stack_b);
@@ -52,7 +52,7 @@ void	pa(t_stack *stack_a, t_stack *stack_b)
 	t_stack	*first_a;
 	t_stack	*first_b;
 
-	if (!stack_a || !stack_b)
+	if (!stack_a)
 		return ;
 	first_a = first_node(stack_a);
 	first_b = first_node(stack_b);
