@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 21:05:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/20 20:10:58 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/21 01:05:05 by lupin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,5 +167,19 @@ void	rrb(t_stack **stack_b);
  * @param stack_b Pointer to any node of stack b.
  */
 void	rrr(t_stack **stack_a, t_stack **stack_b);
+
+/**
+ * @brief Sorts the elements in stack a using insertion sort algorithm.
+ * @param stack_a Pointer to any node of stack a.
+ * @param stack_b Pointer to any node of stack b.
+ */
+void	insertion_sort(t_stack **stack_a, t_stack **stack_b);
+
+/**
+ * @brief Prints the values in the list.
+ * @param lst Pointer to the first node of the list.
+ */
+void	print_list(const t_stack *lst);
+
 
 #endif
