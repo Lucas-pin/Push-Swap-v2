@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 21:05:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/18 21:41:37 by lupin            ###   ########.fr       */
+/*   Updated: 2026/05/20 19:06:45 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,19 +87,19 @@ void	free_stack(t_stack **lst);
 t_stack	*build_list(char **argv);
 
 /**
- * @brief Take the first element from stack b and place it at the top of stack a.
- * @note It does nothing if b is empty.
- * @param stack_a Pointer to any node of stack a.
- * @param stack_b Pointer to any node of stack b.
- */
-void	pb(t_stack *stack_a, t_stack *stack_b);
-
-/**
  * @brief Take the first element from stack a and place it at the top of stack b.
  * @note It does nothing if a is empty.
  * @param stack_a Pointer to any node of stack a.
  * @param stack_b Pointer to any node of stack b.
  */
-void	pa(t_stack *stack_a, t_stack *stack_b);
+void	pb(t_stack **stack_a, t_stack **stack_b);
+
+/**
+ * @brief Take the first element from stack b and place it at the top of stack a.
+ * @note It does nothing if b is empty.
+ * @param stack_a Pointer to any node of stack a.
+ * @param stack_b Pointer to any node of stack b.
+ */
+void	pa(t_stack **stack_a, t_stack **stack_b);
 
 #endif
