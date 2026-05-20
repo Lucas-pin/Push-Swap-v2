@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 21:05:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/20 19:36:22 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/20 19:58:23 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,5 +123,27 @@ void	sb(t_stack **stack_b);
  * @param stack_b Pointer to any node of stack b.
  */
 void	ss(t_stack **stack_a, t_stack **stack_b);
+
+/**
+ * @brief Moves all of the elements in stack a down, making the last element the first.
+ * @note It does nothing if a is empty or only has one element.
+ * @param stack_a Pointer to any node of stack a.
+ */
+void	rra(t_stack **stack_a);
+
+/**
+ * @brief Moves all of the elements in stack b down, making the last element the first.
+ * @note It does nothing if a is empty or only has one element.
+ * @param stack_a Pointer to any node of stack a.
+ */
+void	rrb(t_stack **stack_b);
+
+/**
+ * @brief Moves all of the elements in stack b and stack a down, making the last element the first.
+ * @note It reversed rotate any stack if has at least two elements.
+ * @param stack_a Pointer to any node of stack a. 
+ * @param stack_b Pointer to any node of stack b.
+ */
+void	rrr(t_stack **stack_a, t_stack **stack_b);
 
 #endif
