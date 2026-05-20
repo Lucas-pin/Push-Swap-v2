@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 19:51:15 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/20 19:57:11 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/20 20:06:32 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	rev_rotate(t_stack **stack)
 	last->prev->next = NULL;
 	last->next = first;
 	last->prev = NULL;
+	first->prev = last;
 	*stack = last;
 }
 
