@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 20:29:07 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/17 14:30:22 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/20 23:20:40 by lupin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,22 @@ t_stack	*first_node(const t_stack *lst)
 	while (lst->prev)
 		lst = lst->prev;
 	return ((t_stack *)lst);
+}
+
+void	print_list(const t_stack *lst)
+{
+	if (!lst)
+	{
+		ft_printf("Empty list\n");
+		return ;
+	}
+	ft_printf("[DBEUG] stack values: \n");
+	while (lst)
+	{
+		ft_printf("%i", lst->value);
+		if (lst->next)
+			ft_printf(", ");
+		lst = lst->next;
+	}
+	ft_printf("\n");
 }
