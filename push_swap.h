@@ -6,7 +6,7 @@
 /*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 21:05:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/21 22:41:51 by lupin            ###   ########.fr       */
+/*   Updated: 2026/05/22 00:12:04 by lupin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,6 @@
 # define ERROR -1
 
 /**
- * @struct s_stack
- * @brief Structure used to store stack elements.
- * @var s_stack::value Value stored in the stack element.
- * @var s_stack::next Pointer to the next element in the stack.
- * @var s_stack::prev Pointer to the previous element in the stack.
- */
-
-typedef struct s_stack
-{
-	int				value;
-	struct s_stack	*next;
-	struct s_stack	*prev;
-}	t_stack;
-
-/**
  * @enum e_order
  * @brief Enumeration to represent the order of elements in the stack.
  * @var ASC: Elements are ordered in ascending order.
@@ -44,6 +29,27 @@ typedef enum e_order
 	ASC,
 	DESC
 }	t_order;
+
+typedef struct s_bench
+{
+	int	*array;
+	int	size;
+}	t_bench;
+
+/**
+ * @struct s_stack
+ * @brief Structure used to store stack elements.
+ * @var s_stack::value Value stored in the stack element.
+ * @var s_stack::next Pointer to the next element in the stack.
+ * @var s_stack::prev Pointer to the previous element in the stack.
+ */
+typedef struct s_stack
+{
+	int				value;
+	struct s_stack	*next;
+	struct s_stack	*prev;
+}	t_stack;
+
 
 /**
  * @brief Creates a new stack node with the given content.
@@ -202,5 +208,14 @@ int		insertion_sort(t_stack **stack_a, t_stack **stack_b);
  */
 void	print_list(const t_stack *lst);
 
+/**
+ * @brief Computes the disorder index of the stack.
+ * @param stack Pointer to any node of the stack.
+ * @param disorder Array of two integers where disorder[0] 
+ * is the number of disordered pairs and 
+ * disorder[1] is the total number of pairs.
+ * @return Pointer to the disorder array, or ERROR on failure.
+ */
+int		*compute_disorder(t_stack *stack, int *disorder);
 
 #endif
