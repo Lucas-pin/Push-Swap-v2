@@ -29,21 +29,17 @@ int main(int argc, char **argv)
 	list_b = NULL;
 	insertion_sort(&list_a, &list_b);
 	head_a = list_a;
-	/*
 	while (list_a)
 	{
 		ft_printf("[TEST A] node content: %i\n", list_a->value);
 		list_a = list_a->next;
 	}
-	*/
 	head_b = list_b;
-	/*
 	while (list_b)
 	{
 		ft_printf("[TEST B] node content: %i\n", list_b->value);
 		list_b = list_b->next;
 	}
-	*/
 	free_stack(&head_a);
 	free_stack(&head_b);
 
