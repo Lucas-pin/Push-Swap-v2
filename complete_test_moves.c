@@ -21,6 +21,8 @@ int main(int argc, char **argv)
 	while (argv[i])
 		ft_printf("[TEST]-> %s\n", argv[i++]);
 	list_a = first_node((const t_stack *)build_list(argv));
+	if (!list_a)
+		return (-1);
 	list_b = NULL;
 	insertion_sort(&list_a, &list_b);
 	head_a = list_a;
