@@ -6,7 +6,7 @@
 /*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 21:05:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/21 01:05:05 by lupin            ###   ########.fr       */
+/*   Updated: 2026/05/21 22:41:51 by lupin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # include "libft/libft.h"
 # include "libft/ft_printf.h"
 # include "libft/get_next_line.h"
+# include <limits.h>
+# define ERROR -1
 
 /**
  * @struct s_stack
@@ -30,6 +32,18 @@ typedef struct s_stack
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }	t_stack;
+
+/**
+ * @enum e_order
+ * @brief Enumeration to represent the order of elements in the stack.
+ * @var ASC: Elements are ordered in ascending order.
+ * @var DESC: Elements are ordered in descending order.
+ */
+typedef enum e_order
+{
+	ASC,
+	DESC
+}	t_order;
 
 /**
  * @brief Creates a new stack node with the given content.
@@ -125,21 +139,24 @@ void	sb(t_stack **stack_b);
 void	ss(t_stack **stack_a, t_stack **stack_b);
 
 /**
- * @brief Moves all of the elements in stack a up, making the first element the last.
+ * @brief Moves all of the elements in stack a up, 
+ * making the first element the last.
  * @note It does nothing if a is empty or only has one element.
  * @param stack_a Pointer to any node of stack a.
  */
 void	ra(t_stack **stack_a);
 
 /**
- * @brief Moves all of the elements in stack b up, making the first element the last.
+ * @brief Moves all of the elements in stack b up, 
+ * making the first element the last.
  * @note It does nothing if a is empty or only has one element.
  * @param stack_a Pointer to any node of stack a.
  */
 void	rb(t_stack **stack_b);
 
 /**
- * @brief Moves all of the elements in stack b and stack a up, making the first element the last.
+ * @brief Moves all of the elements in stack b and stack a up, 
+ * making the first element the last.
  * @note It rotate any stack if has at least two elements.
  * @param stack_a Pointer to any node of stack a. 
  * @param stack_b Pointer to any node of stack b.
@@ -147,21 +164,24 @@ void	rb(t_stack **stack_b);
 void	rr(t_stack **stack_a, t_stack **stack_b);
 
 /**
- * @brief Moves all of the elements in stack a down, making the last element the first.
+ * @brief Moves all of the elements in stack a down, 
+ * making the last element the first.
  * @note It does nothing if a is empty or only has one element.
  * @param stack_a Pointer to any node of stack a.
  */
 void	rra(t_stack **stack_a);
 
 /**
- * @brief Moves all of the elements in stack b down, making the last element the first.
+ * @brief Moves all of the elements in stack b down, 
+ * making the last element the first.
  * @note It does nothing if a is empty or only has one element.
  * @param stack_a Pointer to any node of stack a.
  */
 void	rrb(t_stack **stack_b);
 
 /**
- * @brief Moves all of the elements in stack b and stack a down, making the last element the first.
+ * @brief Moves all of the elements in stack b and stack a down, 
+ * making the last element the first.
  * @note It reversed rotate any stack if has at least two elements.
  * @param stack_a Pointer to any node of stack a. 
  * @param stack_b Pointer to any node of stack b.
@@ -172,8 +192,9 @@ void	rrr(t_stack **stack_a, t_stack **stack_b);
  * @brief Sorts the elements in stack a using insertion sort algorithm.
  * @param stack_a Pointer to any node of stack a.
  * @param stack_b Pointer to any node of stack b.
+ * @return 0 on success, or ERROR if an error occurs.
  */
-void	insertion_sort(t_stack **stack_a, t_stack **stack_b);
+int		insertion_sort(t_stack **stack_a, t_stack **stack_b);
 
 /**
  * @brief Prints the values in the list.
