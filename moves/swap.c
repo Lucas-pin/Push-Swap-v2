@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 19:17:41 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/20 19:35:19 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/21 22:57:48 by lupin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	swap(t_stack **stack)
 {
-	t_stack *first;
-	t_stack *second;
+	t_stack	*first;
+	t_stack	*second;
 
 	first = *stack;
 	second = first->next;
@@ -30,22 +30,25 @@ void	sa(t_stack **stack_a)
 {
 	if (!stack_a)
 		return ;
-	if(lst_size(*stack_a) <= 1)
+	if (lst_size(*stack_a) <= 1)
 		return ;
 	swap(stack_a);
+	ft_printf("sa\n");
 }
 
 void	sb(t_stack **stack_b)
 {
 	if (!stack_b)
 		return ;
-	if(lst_size(*stack_b) <= 1)
+	if (lst_size(*stack_b) <= 1)
 		return ;
 	swap(stack_b);
+	ft_printf("sb\n");
 }
 
 void	ss(t_stack **stack_a, t_stack **stack_b)
 {
-	sa(stack_a);
-	sb(stack_b);
+	swap(stack_a);
+	swap(stack_b);
+	ft_printf("ss\n");
 }
