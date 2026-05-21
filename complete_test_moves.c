@@ -22,24 +22,7 @@ int main(int argc, char **argv)
 		ft_printf("[TEST]-> %s\n", argv[i++]);
 	list_a = first_node((const t_stack *)build_list(argv));
 	list_b = NULL;
-	pb(&list_a, &list_b);
-	ra(&list_a);
-	pb(&list_a, &list_b);
-	pb(&list_a, &list_b);
-	ra(&list_a);
-	ra(&list_a);
-	pb(&list_a, &list_b);
-	pb(&list_a, &list_b);
-	pa(&list_a, &list_b);
-	ra(&list_a);
-	pa(&list_a, &list_b);
-	ra(&list_a);
-	pa(&list_a, &list_b);
-	ra(&list_a);
-	pa(&list_a, &list_b);
-	rra(&list_a);
-	pa(&list_a, &list_b);
-	rra(&list_a);
+	insertion_sort(&list_a, &list_b);
 	head_a = list_a;
 	while (list_a)
 	{
