@@ -6,13 +6,14 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 22:19:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/21 13:49:43 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/21 14:47:48 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static int	find_min_pos(t_stack *stack, int value)
+// Find the maximum number in stack which is lower than value
+static int	find_lower_pos(t_stack *stack, int value)
 {
 	int	pos;
 	int	index;
@@ -36,7 +37,8 @@ static int	find_min_pos(t_stack *stack, int value)
 	return (pos);
 }
 
-static int	find_max_pos(t_stack *stack, int value)
+// Find the maximum number in stack which is higher than value
+static int	find_higher_pos(t_stack *stack, int value)
 {
 	int	pos;
 	int	index;
@@ -99,15 +101,15 @@ void	insertion_sort(t_stack **stack_a, t_stack **stack_b)
 	pb(stack_a, stack_b);
 	while (*stack_a)
 	{
-		pos = find_min_pos(*stack_b, (*stack_a)->value);
+		pos = find_lower_pos(*stack_b, (*stack_a)->value);
 		if (pos == -1)
-			pos = find_max_pos(*stack_b, (*stack_a)->value);
+			pos = find_higher_pos(*stack_b, (*stack_a)->value);
 		if (pos == -1)
 			return ;
 		rotate_stack(stack_b, pos);
 		pb(stack_a, stack_b);
 	}
-	rotate_stack(stack_b, find_min_pos(*stack_b, max_value(*stack_b) + 1));
+	rotate_stack(stack_b, find_lower_pos(*stack_b, max_value(*stack_b) + 1));
 	while (*stack_b)
 		pa(stack_a, stack_b);
 }
