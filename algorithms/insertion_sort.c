@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   insertion_sort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 22:19:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/21 01:05:16 by lupin            ###   ########.fr       */
+/*   Updated: 2026/05/21 13:49:43 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ void	rotate_stack(t_stack **stack, int pos)
 void	insertion_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	int	pos;
-	int	max;
 
 	pb(stack_a, stack_b);
 	while (*stack_a)
