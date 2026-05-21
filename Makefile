@@ -6,14 +6,16 @@
 #    By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/18 20:40:00 by lupin             #+#    #+#              #
-#    Updated: 2026/05/18 20:46:16 by lupin            ###   ########.fr        #
+#    Updated: 2026/05/21 21:22:39 by lupin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = initial_test.c build_list.c linked_list_utils.c linked_list.c
+SRCS = complete_test_moves.c build_list.c linked_list_utils.c linked_list.c \
+		moves/push.c moves/rotate.c moves/rev_rotate.c moves/swap.c \
+		algorithms/insertion_sort.c
 OBJS = $(SRCS:.c=.o)
 
 NAME = test

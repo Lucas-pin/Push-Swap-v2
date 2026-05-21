@@ -27,7 +27,8 @@ int main(int argc, char **argv)
 	if (!list_a)
 		return (-1);
 	list_b = NULL;
-	insertion_sort(&list_a, &list_b);
+	if (insertion_sort(&list_a, &list_b) == ERROR)
+		return (ERROR);
 	head_a = list_a;
 	while (list_a)
 	{
