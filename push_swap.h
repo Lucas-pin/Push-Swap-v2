@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 21:05:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/23 12:05:43 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/23 12:16:56 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,11 +210,8 @@ void	print_list(const t_stack *lst);
 /**
  * @brief Computes the disorder index of the stack.
  * @param stack Pointer to any node of the stack.
- * @param disorder Array of two integers where disorder[0] 
- * is the number of disordered pairs and 
- * disorder[1] is the total number of pairs.
- * @return Pointer to the disorder array, or ERROR on failure.
+ * @return The disorder index calculated, or ERROR on failure.
  */
-int		*compute_disorder(t_stack *stack, int *disorder);
+double	compute_disorder(t_stack *stack);
 
 #endif
