@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 14:42:35 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/23 15:10:20 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/23 15:28:31 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int argc, char **argv)
 		flag = 1;
 	list_a = first_node((const t_stack *)build_list(argv));
 	if (!list_a)
-		return (-1);
+		return(error());
 	list_b = NULL;
 	if (flag == 0)
 	{

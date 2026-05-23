@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 21:05:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/23 14:41:37 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/23 15:26:36 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,5 +251,11 @@ int		pos_of_value(t_stack *stack, int value);
  * @return 0 on success, or ERROR if an error occurs.
  */
 int		chunk_sort(t_stack **stack_a, t_stack **stack_b);
+
+/**
+ * @brief Print the error message and perform a correct exit.
+ * @return ERROR cause a problem has been occurred.
+ */
+int		error(void);
 
 #endif
