@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 12:10:50 by lpin              #+#    #+#             */
-/*   Updated: 2026/05/17 14:03:49 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/23 14:40:24 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,13 @@ int		ft_isprint(int c);
  * @return The length of the string.
  */
 size_t	ft_strlen(const char *s);
+
+/**
+ * @brief Find the square root of a value. 
+ * @param num The value whose square root we want to know.
+ * @return The square root which is required.
+ */
+int		ft_sqrt(int num);
 
 /**
  * @brief Writes len bytes of value c (converted to an unsigned char) 
@@ -199,6 +206,15 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
  * or NULL if the character does not appear in the string.
  */
 char	*ft_strnstr(const char *big, const char *little, size_t len);
+
+/**
+ * @brief Evaluate if a value is part of a list.
+ * @param value The value we are finding.
+ * @param list Pointer to a list of integers.
+ * @param length Amount of numbers in the list.
+ * @return 1 if the number is found in the list, 0 if not.
+ */
+int		ft_in_array(int value, int *list, int length);
 
 /**
  * @brief Locates the first occurrence of c (converted to an unsigned char)
