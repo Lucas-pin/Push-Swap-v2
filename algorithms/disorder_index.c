@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   disorder_index.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 23:54:37 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/22 00:14:42 by lupin            ###   ########.fr       */
+/*   Updated: 2026/05/23 12:07:27 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	*compute_disorder(t_stack *stack, int *disorder)
 	mistakes = 0;
 	total_pairs = 0;
 	if (!stack)
-		return (int[]){ERROR, ERROR};
+		return ((int *){ERROR, ERROR});
 	while (stack)
 	{
 		aux = stack->next;
