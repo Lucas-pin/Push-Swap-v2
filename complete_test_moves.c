@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 14:42:35 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/23 15:28:31 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/24 01:44:12 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	main(int argc, char **argv)
 	t_stack	*list_b;
 	t_stack	*head_b;
 	int		flag;
+	int		size;
+	double	disorder_index;
 
 	++argv;
 	if (argc <= 1)
@@ -27,6 +29,12 @@ int	main(int argc, char **argv)
 		ft_printf("=================== END TEST ===================\n\n");
 		return (0);
 	}
+	list_a = first_node((const t_stack *)build_list(argv));
+	if (!list_a)
+		return(error());
+	list_b = NULL;
+	size = lst_size(list_a);
+	disorder_index = compute_disorder(list_a);
 	flag = -1;
 	if (ft_strncmp(*argv, "--simple", 9) == 0)
 		flag = 0;
@@ -39,11 +47,16 @@ int	main(int argc, char **argv)
 	if (flag != -1)
 		++argv;
 	else
-		flag = 1;
-	list_a = first_node((const t_stack *)build_list(argv));
-	if (!list_a)
-		return(error());
-	list_b = NULL;
+		flag = 3;
+	if (flag == 3)
+	{
+		if (disorder_index < 0.2)
+			flag = 0;
+		else if (disorder_index < 0.5)
+			flag = 1;
+		else
+			flag = 2;
+	}
 	if (flag == 0)
 	{
 		if (insertion_sort(&list_a, &list_b) == ERROR)
@@ -54,8 +67,11 @@ int	main(int argc, char **argv)
 		if (chunk_sort(&list_a, &list_b) == ERROR)
 			return (ERROR);
 	}
+	else if (flag == 2)
+		radix_sort(&list_a, &list_b, size);
 	head_b = list_b;
 	head_a = list_a;
+	/*
 	while (list_a)
 	{
 		ft_printf("[TEST A] node content: %i\n", list_a->value);
@@ -67,6 +83,7 @@ int	main(int argc, char **argv)
 		ft_printf("[TEST B] node content: %i\n", list_b->value);
 		list_b = list_b->next;
 	}
+	*/
 	free_stack(&head_a);
 	free_stack(&head_b);
 	return (0);

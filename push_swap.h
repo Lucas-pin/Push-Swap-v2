@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 21:05:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/23 15:26:36 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/24 01:31:06 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,14 @@ typedef struct s_bench
  * @struct s_stack
  * @brief Structure used to store stack elements.
  * @var s_stack::value Value stored in the stack element.
+ * @var s_stack::index Relative position in the ordered list (For radix_sort)
  * @var s_stack::next Pointer to the next element in the stack.
  * @var s_stack::prev Pointer to the previous element in the stack.
  */
 typedef struct s_stack
 {
 	int				value;
+	int				index;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }	t_stack;
@@ -257,5 +259,13 @@ int		chunk_sort(t_stack **stack_a, t_stack **stack_b);
  * @return ERROR cause a problem has been occurred.
  */
 int		error(void);
+
+/**
+ * @brief Sorts the elements in stack a using sort by radix.
+ * @param stack_a Pointer to any node of stack a.
+ * @param stack_b Pointer to any node of stack b.
+ * @param size The size of the list.
+ */
+void	radix_sort(t_stack **stack_a, t_stack **stack_b, int size);
 
 #endif
