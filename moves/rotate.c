@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 19:51:15 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/21 22:57:57 by lupin            ###   ########.fr       */
+/*   Updated: 2026/05/23 23:44:51 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void	rotate(t_stack **stack)
 	t_stack	*first;
 	t_stack	*last;
 
+	if (!stack || !*stack || (lst_size(*stack) == 1))
+		return ;
 	first = *stack;
 	last = last_node(*stack);
 	first->next->prev = NULL;
@@ -28,16 +30,12 @@ static void	rotate(t_stack **stack)
 
 void	ra(t_stack **stack_a)
 {
-	if (!stack_a || !*stack_a || (lst_size(*stack_a) == 1))
-		return ;
 	rotate(stack_a);
 	ft_printf("ra\n");
 }
 
 void	rb(t_stack **stack_b)
 {
-	if (!stack_b || !*stack_b || (lst_size(*stack_b) == 1))
-		return ;
 	rotate(stack_b);
 	ft_printf("rb\n");
 }
