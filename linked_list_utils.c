@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 20:29:07 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/20 23:20:40 by lupin            ###   ########.fr       */
+/*   Updated: 2026/05/23 12:29:52 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,17 @@ void	print_list(const t_stack *lst)
 		lst = lst->next;
 	}
 	ft_printf("\n");
+}
+
+int	is_order(t_stack *stack)
+{
+	if (!stack)
+		return(ERROR);
+	while(stack->next)
+	{
+		if (stack->value > stack->next->value)
+			return(0);
+		stack = stack->next;
+	}
+	return (1);
 }

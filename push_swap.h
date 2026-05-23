@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 21:05:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/23 12:16:56 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/23 12:30:30 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,5 +213,12 @@ void	print_list(const t_stack *lst);
  * @return The disorder index calculated, or ERROR on failure.
  */
 double	compute_disorder(t_stack *stack);
+
+/**
+ * @brief Evaluate a stack to be ordered.
+ * @param stack Pointer to any node of the stack.
+ * @return 1 if it is ordered, 0 if not, or ERROR on failure.
+ */
+int	is_order(t_stack *stack);
 
 #endif
