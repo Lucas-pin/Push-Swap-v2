@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 14:42:35 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/23 14:45:32 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/23 15:10:20 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	main(int argc, char **argv)
 		flag = 1;
 	else if (ft_strncmp(*argv, "--complex", 10) == 0)
 		flag = 2;
+	else if (ft_strncmp(*argv, "--adaptative", 13) == 0)
+		flag = 3;
 	if (flag != -1)
 		++argv;
 	else
