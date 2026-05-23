@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 12:10:50 by lpin              #+#    #+#             */
-/*   Updated: 2026/05/23 14:40:24 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/24 01:15:51 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,6 +215,21 @@ char	*ft_strnstr(const char *big, const char *little, size_t len);
  * @return 1 if the number is found in the list, 0 if not.
  */
 int		ft_in_array(int value, int *list, int length);
+
+/**
+ * @brief Count how many bits a number is needed to be represented.
+ * @param num The number whose bits we want to know.
+ * @return An integer with the number of bits needed.
+ */
+int		ft_cont_bits(int num);
+
+/**
+ * @brief Control the value of the bit in the position given.
+ * @param num The number which is used to control.
+ * @param n_bit The position of the bit which is going to be evaluated.
+ * @return 0 or 1, depends on the value of the bit in the position.
+ */
+int		ft_bit_value(int num, int n_bit);
 
 /**
  * @brief Locates the first occurrence of c (converted to an unsigned char)
