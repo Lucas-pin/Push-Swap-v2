@@ -6,7 +6,7 @@
 #    By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/26 14:49:38 by lupin             #+#    #+#              #
-#    Updated: 2026/05/23 14:37:26 by jruiz-ag         ###   ########.fr        #
+#    Updated: 2026/05/23 23:40:24 by jruiz-ag         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,40 +23,40 @@ SRCS = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 	  ft_destroyer.c ft_del.c ft_strjoin_free_s1.c ft_strjoin_free_s2.c ft_split_destroyer.c\
 	  get_next_line.c get_next_line_utils.c ft_printf.c ft_printf_utils.c
 
-OBJS = $(SRCS:.c=.o)
+OBJ_DIR = obj
+OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 NAME = libft.a
 
-RM = rm -f
+RM = rm -rf
 
 HEADER = libft.h get_next_line.h ft_printf.h
 
-%o: %.c $(HEADER)
-	@$(CC) $(CFLAGS) -c $(SRCS)
-
+# All needs to be always the first rule
 all: $(NAME)
 
+# Creating the static library
 $(NAME): $(OBJS) $(HEADER)
-	ar rcs $(NAME) $(OBJS)
+	@ar rcs $(NAME) $(OBJS)
 
-#ar [options] [library_archive_name] [object_files]
-#ar: creates, modifies, and extracts archive files
-#r: replaces files in the archive if they already exist
-#c: creates the archive if it does not exist
-#s: writes an index of symbols into the archive
+# Object compilation in a hide directory
+$(OBJ_DIR)/%.o: %.c $(HEADER)
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-.PHONY: clean fclean re
-#.PHONY indicates that clean, fclean, and re are not files
-#to be generated, but action targets
-
+# Cleaning objects
 clean:
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJ_DIR)
 	@echo "Libft objects cleaning done."
 
+# Full clean
 fclean: clean
 	@$(RM) $(NAME)
 	@echo "Libft full cleaning done."
 
+# Recompile all from the beggining
 re: fclean all
 	@echo "Libft rebuild done"
-#re: Rebuilds the target
+
+.PHONY: all clean fclean re
+#.PHONY indicates that all, clean, fclean, and re are not files to be generated, but action targets
