@@ -6,24 +6,11 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 20:29:07 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/23 12:29:52 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/23 14:42:18 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	lst_size(const t_stack *lst)
-{
-	int		size;
-
-	size = 0;
-	while (lst)
-	{
-		lst = lst->next;
-		size++;
-	}
-	return (size);
-}
 
 t_stack	*last_node(const t_stack *lst)
 {
@@ -64,12 +51,27 @@ void	print_list(const t_stack *lst)
 int	is_order(t_stack *stack)
 {
 	if (!stack)
-		return(ERROR);
-	while(stack->next)
+		return (ERROR);
+	while (stack->next)
 	{
 		if (stack->value > stack->next->value)
-			return(0);
+			return (0);
 		stack = stack->next;
 	}
 	return (1);
+}
+
+int	pos_of_value(t_stack *stack, int value)
+{
+	int	pos;
+
+	pos = 0;
+	while (stack)
+	{
+		if (stack->value == value)
+			return (pos);
+		pos++;
+		stack = stack->next;
+	}
+	return (-1);
 }

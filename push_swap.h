@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 21:05:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/23 12:30:30 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/23 14:41:37 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,6 +219,37 @@ double	compute_disorder(t_stack *stack);
  * @param stack Pointer to any node of the stack.
  * @return 1 if it is ordered, 0 if not, or ERROR on failure.
  */
-int	is_order(t_stack *stack);
+int		is_order(t_stack *stack);
+
+/**
+ * @brief Rotate the stack to bring the element 
+ * at the specified position to the top
+ * @param stack The stack to rotate
+ * @param pos The position of the element to bring to the top
+ */
+void	rotate_stack(t_stack **stack, int pos);
+
+/**
+ * @brief Find the maximum value in the stack
+ * @param stack The stack to search
+ * @return The maximum value in the stack
+ */
+int		max_value(t_stack *stack);
+
+/**
+ * @brief Find the position into stack where value is
+ * @param stack The stack to search
+ * @param value The value to be found
+ * @return The position where value is found, or -1 if isnt found
+ */
+int		pos_of_value(t_stack *stack, int value);
+
+/**
+ * @brief Sorts the elements in stack a using sort by chunks.
+ * @param stack_a Pointer to any node of stack a.
+ * @param stack_b Pointer to any node of stack b.
+ * @return 0 on success, or ERROR if an error occurs.
+ */
+int		chunk_sort(t_stack **stack_a, t_stack **stack_b);
 
 #endif
