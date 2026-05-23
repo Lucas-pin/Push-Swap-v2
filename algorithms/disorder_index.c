@@ -6,13 +6,13 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 23:54:37 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/23 12:17:27 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/23 14:30:55 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-double compute_disorder(t_stack *stack)
+double	compute_disorder(t_stack *stack)
 {
 	t_stack	*aux;
 	int		mistakes;

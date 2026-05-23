@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   insertion_sort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 22:19:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/21 22:38:50 by lupin            ###   ########.fr       */
+/*   Updated: 2026/05/23 14:30:45 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,7 @@ static int	find_pos(t_stack *stack, int value, t_order order)
 	return (pos);
 }
 
-/**
- * @brief Find the maximum value in the stack
- * @param stack The stack to search
- * @return The maximum value in the stack
- */
-static int	max_value(t_stack *stack)
+int	max_value(t_stack *stack)
 {
 	int	max;
 
@@ -65,13 +60,7 @@ static int	max_value(t_stack *stack)
 	return (max);
 }
 
-/**
- * @brief Rotate the stack to bring the element 
- * at the specified position to the top
- * @param stack The stack to rotate
- * @param pos The position of the element to bring to the top
- */
-static void	rotate_stack(t_stack **stack, int pos)
+void	rotate_stack(t_stack **stack, int pos)
 {
 	int	size;
 	int	count;
@@ -107,7 +96,7 @@ int	insertion_sort(t_stack **stack_a, t_stack **stack_b)
 		rotate_stack(stack_b, pos);
 		pb(stack_a, stack_b);
 	}
-	higher_pos = find_pos(*stack_b, max_value(*stack_b) + 1, DESC);
+	higher_pos = pos_of_value(*stack_b, max_value(*stack_b));
 	rotate_stack(stack_b, higher_pos);
 	while (*stack_b)
 		pa(stack_a, stack_b);
