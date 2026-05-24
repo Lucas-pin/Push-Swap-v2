@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   complete_test_moves.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 14:42:35 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/24 02:37:50 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/24 12:13:55 by lupin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ static int	select_flag(char ***argv)
 
 	flag = -1;
 	if (ft_strncmp(**argv, "--simple", 9) == 0)
-		flag = 0;
+		flag = SIMPLE;
 	else if (ft_strncmp(**argv, "--medium", 9) == 0)
-		flag = 1;
+		flag = MEDIUM;
 	else if (ft_strncmp(**argv, "--complex", 10) == 0)
-		flag = 2;
+		flag = COMPLEX;
 	else if (ft_strncmp(**argv, "--adaptative", 13) == 0)
-		flag = 3;
+		flag = ADAPTATIVE;
 	if (flag != -1)
 		++(*argv);
 	else
-		flag = 3;
+		flag = ADAPTATIVE;
 	return (flag);
 }
 
@@ -44,12 +44,14 @@ static int	select_flag(char ***argv)
  */
 static int	select_by_disorder(double disorder_index)
 {
+	if (disorder_index == 0)
+		ft_printf("The stack is already ordered.\n");
 	if (disorder_index < 0.2)
-		return (0);
+		return (SIMPLE);
 	else if (disorder_index < 0.5)
-		return (1);
+		return (MEDIUM);
 	else
-		return (2);
+		return (COMPLEX);
 }
 
 /**
@@ -61,17 +63,17 @@ static int	select_by_disorder(double disorder_index)
  */
 static int	launch_algorithm(t_stack **stack_a, t_stack **stack_b, int flag)
 {
-	if (flag == 0)
+	if (flag == SIMPLE)
 	{
 		if (insertion_sort(stack_a, stack_b) == ERROR)
 			return (ERROR);
 	}
-	else if (flag == 1)
+	else if (flag == MEDIUM)
 	{
 		if (chunk_sort(stack_a, stack_b) == ERROR)
 			return (ERROR);
 	}
-	else if (flag == 2)
+	else if (flag == COMPLEX)
 		radix_sort(stack_a, stack_b, lst_size(*stack_a));
 	return (0);
 }
@@ -80,11 +82,15 @@ static int	launch_algorithm(t_stack **stack_a, t_stack **stack_b, int flag)
  * @brief Controll a safe exit by freeing both stacks
  * @param stack_a Pointer to any node of stack a.
  * @param stack_b Pointer to any node of stack b.
+ * @param status The exit status.
  */
-static void	free_both(t_stack **stack_a, t_stack **stack_b)
+static void	free_both(t_stack **stack_a, t_stack **stack_b, int status)
 {
 	free_stack(stack_a);
 	free_stack(stack_b);
+	if (status == ERROR)
+		ft_printf("Error\n");
+	exit(status);
 }
 
 int	main(int argc, char **argv)
@@ -101,13 +107,10 @@ int	main(int argc, char **argv)
 	if (!list_a)
 		return (error());
 	list_b = NULL;
-	if (flag == 3)
+	if (flag == ADAPTATIVE)
 		flag = select_by_disorder(compute_disorder(list_a));
 	if (launch_algorithm(&list_a, &list_b, flag) == ERROR)
-	{
-		free_both(&list_a, &list_b);
-		return (error());
-	}
-	free_both(&list_a, &list_b);
+		free_both(&list_a, &list_b, ERROR);
+	free_both(&list_a, &list_b, 0);
 	return (0);
 }

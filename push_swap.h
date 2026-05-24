@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 21:05:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/24 01:31:06 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/24 11:55:32 by lupin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,25 @@ typedef enum e_order
 	ASC,
 	DESC
 }	t_order;
+
+/**
+ * @enum e_options
+ * @brief Enumeration to represent the different algorithm options for sorting.
+ * @var SIMPLE: Use a simple sorting algorithm.
+ * @var MEDIUM: Use a medium complexity sorting algorithm.
+ * @var COMPLEX: Use a complex sorting algorithm.
+ * @var ADAPTATIVE: Automatically select the best algorithm 
+ * based on the disorder index.
+ * @var BENCH: Display information about the sorting process.
+ */
+typedef enum e_options
+{
+	SIMPLE,
+	MEDIUM,
+	COMPLEX,
+	ADAPTATIVE,
+	BENCH
+}	t_options;
 
 typedef struct s_bench
 {
