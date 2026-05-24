@@ -1,44 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   linked_list_utils.c                                :+:      :+:    :+:   */
+/*   disorder_index.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/16 20:29:07 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/17 14:30:22 by jruiz-ag         ###   ########.fr       */
+/*   Created: 2026/05/21 23:54:37 by lupin             #+#    #+#             */
+/*   Updated: 2026/05/23 14:30:55 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-int	lst_size(const t_stack *lst)
+double	compute_disorder(t_stack *stack)
 {
-	int		size;
+	t_stack	*aux;
+	int		mistakes;
+	int		total_pairs;
 
-	size = 0;
-	while (lst)
+	mistakes = 0;
+	total_pairs = 0;
+	if (!stack)
+		return (ERROR);
+	while (stack)
 	{
-		lst = lst->next;
-		size++;
+		aux = stack->next;
+		while (aux)
+		{
+			total_pairs++;
+			if (stack->value > aux->value)
+				mistakes++;
+			aux = aux->next;
+		}
+		stack = stack->next;
 	}
-	return (size);
-}
-
-t_stack	*last_node(const t_stack *lst)
-{
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return ((t_stack *)lst);
-}
-
-t_stack	*first_node(const t_stack *lst)
-{
-	if (!lst)
-		return (NULL);
-	while (lst->prev)
-		lst = lst->prev;
-	return ((t_stack *)lst);
+	return ((double)mistakes / total_pairs);
 }

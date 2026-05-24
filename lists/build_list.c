@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 static int	ft_only_digits(const char *str)
 {
@@ -37,7 +37,7 @@ static int	is_valid(const char *str)
 			sign = -1;
 		++str;
 	}
-	while(*str == '0' && *(str + 1) != '\0')
+	while (*str == '0' && *(str + 1) != '\0')
 		++str;
 	if (!ft_only_digits(str) || (ft_strlen(str) > 10) || ft_strlen(str) < 1)
 		return (0);
@@ -63,8 +63,8 @@ static int	valid_args(char **argv)
 
 static int	repeat_args(const t_stack *lst)
 {
-	t_stack *i;
-	t_stack *j;
+	t_stack		*i;
+	t_stack		*j;
 
 	i = first_node(lst);
 	while (i)

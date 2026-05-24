@@ -6,11 +6,11 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 20:50:26 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/17 14:21:47 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/23 15:30:55 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 t_stack	*new_node(const int content)
 {
@@ -56,6 +56,19 @@ void	add_node_back(t_stack **lst, t_stack *new)
 		last->next = new;
 		new->prev = last;
 	}
+}
+
+int	lst_size(const t_stack *lst)
+{
+	int		size;
+
+	size = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		size++;
+	}
+	return (size);
 }
 
 void	free_stack(t_stack **lst)

@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 21:05:28 by lupin             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2026/05/20 20:10:58 by jruiz-ag         ###   ########.fr       */
+=======
+/*   Updated: 2026/05/24 11:55:32 by lupin            ###   ########.fr       */
+>>>>>>> algorithms
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +19,58 @@
 # include "libft/libft.h"
 # include "libft/ft_printf.h"
 # include "libft/get_next_line.h"
+# include <limits.h>
+# define ERROR -1
+
+/**
+ * @enum e_order
+ * @brief Enumeration to represent the order of elements in the stack.
+ * @var ASC: Elements are ordered in ascending order.
+ * @var DESC: Elements are ordered in descending order.
+ */
+typedef enum e_order
+{
+	ASC,
+	DESC
+}	t_order;
+
+/**
+ * @enum e_options
+ * @brief Enumeration to represent the different algorithm options for sorting.
+ * @var SIMPLE: Use a simple sorting algorithm.
+ * @var MEDIUM: Use a medium complexity sorting algorithm.
+ * @var COMPLEX: Use a complex sorting algorithm.
+ * @var ADAPTATIVE: Automatically select the best algorithm 
+ * based on the disorder index.
+ * @var BENCH: Display information about the sorting process.
+ */
+typedef enum e_options
+{
+	SIMPLE,
+	MEDIUM,
+	COMPLEX,
+	ADAPTATIVE,
+	BENCH
+}	t_options;
+
+typedef struct s_bench
+{
+	int	*array;
+	int	size;
+}	t_bench;
 
 /**
  * @struct s_stack
  * @brief Structure used to store stack elements.
  * @var s_stack::value Value stored in the stack element.
+ * @var s_stack::index Relative position in the ordered list (For radix_sort)
  * @var s_stack::next Pointer to the next element in the stack.
  * @var s_stack::prev Pointer to the previous element in the stack.
  */
-
 typedef struct s_stack
 {
 	int				value;
+	int				index;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }	t_stack;
@@ -125,21 +169,36 @@ void	sb(t_stack **stack_b);
 void	ss(t_stack **stack_a, t_stack **stack_b);
 
 /**
+<<<<<<< HEAD
  * @brief Moves all of the elements in stack a up, making the first element the last.
+=======
+ * @brief Moves all of the elements in stack a up, 
+ * making the first element the last.
+>>>>>>> algorithms
  * @note It does nothing if a is empty or only has one element.
  * @param stack_a Pointer to any node of stack a.
  */
 void	ra(t_stack **stack_a);
 
 /**
+<<<<<<< HEAD
  * @brief Moves all of the elements in stack b up, making the first element the last.
+=======
+ * @brief Moves all of the elements in stack b up, 
+ * making the first element the last.
+>>>>>>> algorithms
  * @note It does nothing if a is empty or only has one element.
  * @param stack_a Pointer to any node of stack a.
  */
 void	rb(t_stack **stack_b);
 
 /**
+<<<<<<< HEAD
  * @brief Moves all of the elements in stack b and stack a up, making the first element the last.
+=======
+ * @brief Moves all of the elements in stack b and stack a up, 
+ * making the first element the last.
+>>>>>>> algorithms
  * @note It rotate any stack if has at least two elements.
  * @param stack_a Pointer to any node of stack a. 
  * @param stack_b Pointer to any node of stack b.
@@ -147,25 +206,116 @@ void	rb(t_stack **stack_b);
 void	rr(t_stack **stack_a, t_stack **stack_b);
 
 /**
+<<<<<<< HEAD
  * @brief Moves all of the elements in stack a down, making the last element the first.
+=======
+ * @brief Moves all of the elements in stack a down, 
+ * making the last element the first.
+>>>>>>> algorithms
  * @note It does nothing if a is empty or only has one element.
  * @param stack_a Pointer to any node of stack a.
  */
 void	rra(t_stack **stack_a);
 
 /**
+<<<<<<< HEAD
  * @brief Moves all of the elements in stack b down, making the last element the first.
+=======
+ * @brief Moves all of the elements in stack b down, 
+ * making the last element the first.
+>>>>>>> algorithms
  * @note It does nothing if a is empty or only has one element.
  * @param stack_a Pointer to any node of stack a.
  */
 void	rrb(t_stack **stack_b);
 
 /**
+<<<<<<< HEAD
  * @brief Moves all of the elements in stack b and stack a down, making the last element the first.
+=======
+ * @brief Moves all of the elements in stack b and stack a down, 
+ * making the last element the first.
+>>>>>>> algorithms
  * @note It reversed rotate any stack if has at least two elements.
  * @param stack_a Pointer to any node of stack a. 
  * @param stack_b Pointer to any node of stack b.
  */
 void	rrr(t_stack **stack_a, t_stack **stack_b);
 
+<<<<<<< HEAD
+=======
+/**
+ * @brief Sorts the elements in stack a using insertion sort algorithm.
+ * @param stack_a Pointer to any node of stack a.
+ * @param stack_b Pointer to any node of stack b.
+ * @return 0 on success, or ERROR if an error occurs.
+ */
+int		insertion_sort(t_stack **stack_a, t_stack **stack_b);
+
+/**
+ * @brief Prints the values in the list.
+ * @param lst Pointer to the first node of the list.
+ */
+void	print_list(const t_stack *lst);
+
+/**
+ * @brief Computes the disorder index of the stack.
+ * @param stack Pointer to any node of the stack.
+ * @return The disorder index calculated, or ERROR on failure.
+ */
+double	compute_disorder(t_stack *stack);
+
+/**
+ * @brief Evaluate a stack to be ordered.
+ * @param stack Pointer to any node of the stack.
+ * @return 1 if it is ordered, 0 if not, or ERROR on failure.
+ */
+int		is_order(t_stack *stack);
+
+/**
+ * @brief Rotate the stack to bring the element 
+ * at the specified position to the top
+ * @param stack The stack to rotate
+ * @param pos The position of the element to bring to the top
+ */
+void	rotate_stack(t_stack **stack, int pos);
+
+/**
+ * @brief Find the maximum value in the stack
+ * @param stack The stack to search
+ * @return The maximum value in the stack
+ */
+int		max_value(t_stack *stack);
+
+/**
+ * @brief Find the position into stack where value is
+ * @param stack The stack to search
+ * @param value The value to be found
+ * @return The position where value is found, or -1 if isnt found
+ */
+int		pos_of_value(t_stack *stack, int value);
+
+/**
+ * @brief Sorts the elements in stack a using sort by chunks.
+ * @param stack_a Pointer to any node of stack a.
+ * @param stack_b Pointer to any node of stack b.
+ * @return 0 on success, or ERROR if an error occurs.
+ */
+int		chunk_sort(t_stack **stack_a, t_stack **stack_b);
+
+/**
+ * @brief Print the error message and perform a correct exit.
+ * @return ERROR cause a problem has been occurred.
+ */
+int		error(void);
+
+/**
+ * @brief Sorts the elements in stack a using sort by radix.
+ * @param stack_a Pointer to any node of stack a.
+ * @param stack_b Pointer to any node of stack b.
+ * @param size The size of the list.
+ */
+void	radix_sort(t_stack **stack_a, t_stack **stack_b, int size);
+
+>>>>>>> algorithms
 #endif
