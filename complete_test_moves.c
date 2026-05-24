@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   complete_test_moves.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 14:42:35 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/24 12:13:55 by lupin            ###   ########.fr       */
+/*   Updated: 2026/05/24 12:56:22 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int	main(int argc, char **argv)
 {
 	t_stack	*list_a;
 	t_stack	*list_b;
+	double	dis_index;
 	int		flag;
 
 	++argv;
@@ -107,9 +108,10 @@ int	main(int argc, char **argv)
 	if (!list_a)
 		return (error());
 	list_b = NULL;
+	dis_index = compute_disorder(list_a);
 	if (flag == ADAPTATIVE)
-		flag = select_by_disorder(compute_disorder(list_a));
-	if (launch_algorithm(&list_a, &list_b, flag) == ERROR)
+		flag = select_by_disorder(dis_index);
+	if ((dis_index != 0) && (launch_algorithm(&list_a, &list_b, flag) == ERROR))
 		free_both(&list_a, &list_b, ERROR);
 	free_both(&list_a, &list_b, 0);
 	return (0);
