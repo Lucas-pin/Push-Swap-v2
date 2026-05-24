@@ -6,85 +6,108 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 14:42:35 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/24 01:44:12 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/24 02:37:50 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+/**
+ * @brief Revise the first argv to see if its any of the valid flags.
+ * @param stack Pointer to the strings of argv.
+ * @return -1, 0, 1, 2 or 3 depending on the algorithm selected.
+ */
+static int	select_flag(char ***argv)
 {
-	t_stack	*list_a;
-	t_stack	*head_a;
-	t_stack	*list_b;
-	t_stack	*head_b;
-	int		flag;
-	int		size;
-	double	disorder_index;
+	int	flag;
 
-	++argv;
-	if (argc <= 1)
-	{
-		ft_printf("[TEST] No arguments\n\n");
-		ft_printf("=================== END TEST ===================\n\n");
-		return (0);
-	}
-	list_a = first_node((const t_stack *)build_list(argv));
-	if (!list_a)
-		return(error());
-	list_b = NULL;
-	size = lst_size(list_a);
-	disorder_index = compute_disorder(list_a);
 	flag = -1;
-	if (ft_strncmp(*argv, "--simple", 9) == 0)
+	if (ft_strncmp(**argv, "--simple", 9) == 0)
 		flag = 0;
-	else if (ft_strncmp(*argv, "--medium", 9) == 0)
+	else if (ft_strncmp(**argv, "--medium", 9) == 0)
 		flag = 1;
-	else if (ft_strncmp(*argv, "--complex", 10) == 0)
+	else if (ft_strncmp(**argv, "--complex", 10) == 0)
 		flag = 2;
-	else if (ft_strncmp(*argv, "--adaptative", 13) == 0)
+	else if (ft_strncmp(**argv, "--adaptative", 13) == 0)
 		flag = 3;
 	if (flag != -1)
-		++argv;
+		++(*argv);
 	else
 		flag = 3;
-	if (flag == 3)
-	{
-		if (disorder_index < 0.2)
-			flag = 0;
-		else if (disorder_index < 0.5)
-			flag = 1;
-		else
-			flag = 2;
-	}
+	return (flag);
+}
+
+/**
+ * @brief Control the disorder_index to choice the correspondent algorithm.
+ * @param disorder_index The index of disorder of the stack.
+ * @return 0, 1, 2 controlling which algorithm is going to be launch.
+ */
+static int	select_by_disorder(double disorder_index)
+{
+	if (disorder_index < 0.2)
+		return (0);
+	else if (disorder_index < 0.5)
+		return (1);
+	else
+		return (2);
+}
+
+/**
+ * @brief Depend on the flag given launch any of the three algorithms.
+ * @param stack_a Pointer to any node of stack a.
+ * @param stack_b Pointer to any node of stack b.
+ * @param flag The flag which is the algorithm selected.
+ * @return 0 is all is okey, ERROR in other cases.
+ */
+static int	launch_algorithm(t_stack **stack_a, t_stack **stack_b, int flag)
+{
 	if (flag == 0)
 	{
-		if (insertion_sort(&list_a, &list_b) == ERROR)
+		if (insertion_sort(stack_a, stack_b) == ERROR)
 			return (ERROR);
 	}
 	else if (flag == 1)
 	{
-		if (chunk_sort(&list_a, &list_b) == ERROR)
+		if (chunk_sort(stack_a, stack_b) == ERROR)
 			return (ERROR);
 	}
 	else if (flag == 2)
-		radix_sort(&list_a, &list_b, size);
-	head_b = list_b;
-	head_a = list_a;
-	/*
-	while (list_a)
+		radix_sort(stack_a, stack_b, lst_size(*stack_a));
+	return (0);
+}
+
+/**
+ * @brief Controll a safe exit by freeing both stacks
+ * @param stack_a Pointer to any node of stack a.
+ * @param stack_b Pointer to any node of stack b.
+ */
+static void	free_both(t_stack **stack_a, t_stack **stack_b)
+{
+	free_stack(stack_a);
+	free_stack(stack_b);
+}
+
+int	main(int argc, char **argv)
+{
+	t_stack	*list_a;
+	t_stack	*list_b;
+	int		flag;
+
+	++argv;
+	if (argc <= 1)
+		return (0);
+	flag = select_flag(&argv);
+	list_a = first_node((const t_stack *)build_list(argv));
+	if (!list_a)
+		return (error());
+	list_b = NULL;
+	if (flag == 3)
+		flag = select_by_disorder(compute_disorder(list_a));
+	if (launch_algorithm(&list_a, &list_b, flag) == ERROR)
 	{
-		ft_printf("[TEST A] node content: %i\n", list_a->value);
-		list_a = list_a->next;
+		free_both(&list_a, &list_b);
+		return (error());
 	}
-	ft_printf("-----------------------------");
-	while (list_b)
-	{
-		ft_printf("[TEST B] node content: %i\n", list_b->value);
-		list_b = list_b->next;
-	}
-	*/
-	free_stack(&head_a);
-	free_stack(&head_b);
+	free_both(&list_a, &list_b);
 	return (0);
 }
