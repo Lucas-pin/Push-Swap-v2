@@ -60,31 +60,6 @@ static void	iter(t_stack **stack_a, t_stack **stack_b, int idx_bit, int size)
 }
 
 /**
- * @brief Do the final iteration to separate negative and positive.
- * @param stack_a Pointer to any node of stack a.
- * @param stack_b Pointer to any node of stack b.
- * @param size The size of the list.
- */
-static void	iter_negative(t_stack **stack_a, t_stack **stack_b, int size)
-{
-	int	cont;
-
-	cont = 0;
-	while (cont < size)
-	{
-		if ((*stack_a)->index < 0)
-			pb(stack_a, stack_b);
-		else
-			ra(stack_a);
-		++cont;
-	}
-	while (*stack_b)
-	{
-		pa(stack_a, stack_b);
-	}
-}
-
-/**
  * @brief Transform the array to simplify the numbers and use minimum bits,
  * assigning them the relative pos in an ordered list.
  * @param stack Pointer to any node of stack.
@@ -126,5 +101,4 @@ void	radix_sort(t_stack **stack_a, t_stack **stack_b, int size)
 		iter(stack_a, stack_b, idx_bit, size);
 		++idx_bit;
 	}
-	iter_negative(stack_a, stack_b, size);
 }
