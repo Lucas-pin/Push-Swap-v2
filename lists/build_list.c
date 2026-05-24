@@ -12,11 +12,11 @@
 
 #include "../push_swap.h"
 
-static int	ft_only_digits(const char *str)
+static int	only_digits(const char *str)
 {
 	while (*str)
 	{
-		if (*str < '0' || *str > '9')
+		if (!ft_isdigit((int)*str))
 			return (0);
 		++str;
 	}
@@ -39,13 +39,13 @@ static int	is_valid(const char *str)
 	}
 	while (*str == '0' && *(str + 1) != '\0')
 		++str;
-	if (!ft_only_digits(str) || (ft_strlen(str) > 10) || ft_strlen(str) < 1)
+	if (!only_digits(str) || (ft_strlen(str) > 10) || ft_strlen(str) < 1)
 		return (0);
 	control = 0;
 	while (*str)
 		control = control * 10 + (*(str++) - '0');
 	control *= sign;
-	if ((control < -2147483648) || (control > 2147483647))
+	if ((control < INT_MIN) || (control > INT_MAX))
 		return (0);
 	return (1);
 }
