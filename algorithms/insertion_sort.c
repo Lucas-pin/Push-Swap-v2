@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 22:19:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/23 14:30:45 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/25 14:13:38 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	rotate_stack(t_stack **stack, int pos)
 	}
 }
 
-int	insertion_sort(t_stack **stack_a, t_stack **stack_b)
+void	insertion_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	int	pos;
 	int	higher_pos;
@@ -91,8 +91,6 @@ int	insertion_sort(t_stack **stack_a, t_stack **stack_b)
 		pos = find_pos(*stack_b, (*stack_a)->value, DESC);
 		if (pos == ERROR)
 			pos = find_pos(*stack_b, (*stack_a)->value, ASC);
-		if (pos == ERROR)
-			return (ERROR);
 		rotate_stack(stack_b, pos);
 		pb(stack_a, stack_b);
 	}
@@ -100,5 +98,4 @@ int	insertion_sort(t_stack **stack_a, t_stack **stack_b)
 	rotate_stack(stack_b, higher_pos);
 	while (*stack_b)
 		pa(stack_a, stack_b);
-	return (0);
 }

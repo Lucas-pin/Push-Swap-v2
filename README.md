@@ -64,11 +64,8 @@ make
 To run the program, pass a list of integers as arguments. The program will output the sequence of operations required to sort the stack.
 
 ```bash
-# Using multiple arguments
-./push_swap 4 67 3 87 23
-
-# Using a single string argument
-./push_swap "4 67 3 87 23"
+# Using multiples strings and multiples arguments
+./push_swap "4 67 3 87" 5 10 "-1 -5" 0
 ```
 
 ### Execution with Flags
@@ -113,7 +110,7 @@ cat bench.txt
 
 ### Error Handling
 
-In case of an error (e.g., non-integer arguments, arguments outside the standard integer range, or duplicated numbers), the program will print `"Error\n"` to the standard error output (`stderr`). If no parameters are provided, the program resolves cleanly without output, returning control to the user.
+In case of an error (e.g., non-integer arguments, arguments outside the standard integer range, or duplicated numbers), the program will print `"Error\n"` to the standard  output (`stdout`). If no parameters are provided, the program resolves cleanly without output, returning control to the user.
 
 ### Using the Checker (Bonus)
 

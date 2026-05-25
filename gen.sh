@@ -1,73 +1,18 @@
 #!/bin/bash
 
-# Uso:
-# ./gen.sh N D
-# N = cantidad de elementos
-# D = índice de desorden (0.0 - 1.0)
+# Verificar que se haya pasado la cantidad 'n' como argumento
+if [ -z "$1" ]; then
+    echo "Error: Debes indicar la cantidad de números a generar."
+    echo "Uso: $0 <cantidad_n>"
+    exit 1
+fi
 
+# Guardar el argumento n y definir el archivo de salida
 N=$1
-D=$2
+OUTPUT="args.txt"
 
-MIN=-10000
-MAX=10000
-
-if [ -z "$N" ] || [ -z "$D" ]; then
-    echo "Uso: $0 N D"
-    exit 1
-fi
-
-RANGE=$((MAX - MIN + 1))
-
-if [ "$N" -gt "$RANGE" ]; then
-    echo "Error: N demasiado grande para el rango"
-    exit 1
-fi
-
-# =========================
-# 1. Generar números únicos seguros
-# =========================
-mapfile -t arr < <(seq $MIN $MAX | shuf -n "$N")
-
-# ordenar base inicial
-mapfile -t arr < <(printf "%s\n" "${arr[@]}" | sort -n)
-
-# =========================
-# 2. Calcular objetivo de inversiones
-# =========================
-MAX_INV=$((N*(N-1)/2))
-TARGET=$(awk "BEGIN {printf \"%d\", (1 - $D) * $MAX_INV}")
-# clamp
-(( TARGET < 0 )) && TARGET=0
-(( TARGET > MAX_INV )) && TARGET=$MAX_INV
-
-# =========================
-# 3. Construir permutación con EXACTO número de inversiones
-# =========================
-result=()
-remaining=$TARGET
-
-for ((i=0; i<N; i++)); do
-    x=${arr[$i]}
-
-    # cuántas inversiones crear al insertarlo
-    pos=$remaining
-    if [ "$pos" -gt "$i" ]; then
-        pos=$i
-    fi
-
-    result=("${result[@]:0:$pos}" "$x" "${result[@]:$pos}")
-
-    remaining=$((remaining - pos))
-done
-
-# =========================
-# 4. Guardar salida
-# =========================
-printf "%s " "${result[@]}" > args.txt
-echo >> args.txt
-
-echo "Generados: $N números únicos"
-echo "Rango: [$MIN, $MAX]"
-echo "Desorden objetivo: $D"
-echo "Inversiones: $TARGET / $MAX_INV"
-echo "Salida: args.txt"
+# Explicación del combo:
+# 1. shuf genera N números aleatorios entre 0 y 1,000,000 (el -r permite que se repitan).
+# 2. awk toma cada número y le resta 500,000.
+# 3. Al final se redirige todo a args.txt.
+shuf -i 0-1000000 -n "$N" | awk '{print $1 - 500000}' > "$OUTPUT"
