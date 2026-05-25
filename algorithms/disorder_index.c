@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   disorder_index.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 23:54:37 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/23 14:30:55 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/25 19:48:00 by lupin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@ double	compute_disorder(t_stack *stack)
 		}
 		stack = stack->next;
 	}
+	if (total_pairs == 0)
+		return (0.0);
 	return ((double)mistakes / total_pairs);
 }
