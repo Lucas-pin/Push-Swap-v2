@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   radix_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 00:06:11 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/25 14:15:45 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/25 22:36:38 by lupin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ static void	iter(t_stack **stack_a, t_stack **stack_b, int idx_bit, int size)
 	{
 		bit_value = ft_bit_value((*stack_a)->index, idx_bit);
 		if (bit_value == 0)
-			pb(stack_a, stack_b);
+			orchestor(stack_a, stack_b, 0, PB);
 		else
-			ra(stack_a);
+			orchestor(stack_a, stack_b, 0, RA);
 		++cont;
 	}
 	while (*stack_b)
-		pa(stack_a, stack_b);
+		orchestor(stack_a, stack_b, 0, PA);
 }
 
 void	radix_sort(t_stack **stack_a, t_stack **stack_b, int size)
@@ -72,4 +72,5 @@ void	radix_sort(t_stack **stack_a, t_stack **stack_b, int size)
 		iter(stack_a, stack_b, idx_bit, size);
 		++idx_bit;
 	}
+	orchestor(stack_a, stack_b, PRINT, -1);
 }

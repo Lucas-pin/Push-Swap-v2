@@ -53,13 +53,13 @@ static void	mv_chunks(t_stack **stack_a, t_stack **stack_b, int size_lst)
 	{
 		if ((*stack_a)->index <= limit)
 		{
-			pb(stack_a, stack_b);
+			orchestor(stack_a, stack_b, 0, PB);
 			++moved;
 			if ((*stack_b)->index < (limit - (len_chunk / 2)))
-				rb(stack_b);
+				orchestor(stack_a, stack_b, 0, RB);
 		}
 		else
-			ra(stack_a);
+			orchestor(stack_a, stack_b, 0, RA);
 		if (moved == limit + 1)
 		{
 			limit += len_chunk;
@@ -76,7 +76,8 @@ void	chunk_sort(t_stack **stack_a, t_stack **stack_b)
 	while (*stack_b)
 	{
 		pos = pos_of_value(*stack_b, max_value(*stack_b));
-		rotate_stack(stack_b, pos);
-		pa(stack_a, stack_b);
+		rotate_stack(stack_a, stack_b, pos);
+		orchestor(stack_a, stack_b, 0, PA);
 	}
+	orchestor(stack_a, stack_b, PRINT, -1);
 }

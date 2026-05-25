@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   insertion_sort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 22:19:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/25 14:13:38 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/25 22:36:31 by lupin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,23 +60,23 @@ int	max_value(t_stack *stack)
 	return (max);
 }
 
-void	rotate_stack(t_stack **stack, int pos)
+void	rotate_stack(t_stack **stack_a, t_stack **stack_b, int pos)
 {
 	int	size;
 	int	count;
 
-	size = lst_size(*stack);
+	size = lst_size(*stack_b);
 	if (pos <= size / 2)
 	{
 		count = pos;
 		while (count-- > 0)
-			rb(stack);
+			orchestor(stack_a, stack_b, 0, RB);
 	}
 	else
 	{
 		count = size - pos;
 		while (count-- > 0)
-			rrb(stack);
+			orchestor(stack_a, stack_b, 0, RRB);
 	}
 }
 
@@ -85,17 +85,18 @@ void	insertion_sort(t_stack **stack_a, t_stack **stack_b)
 	int	pos;
 	int	higher_pos;
 
-	pb(stack_a, stack_b);
+	orchestor(stack_a, stack_b, 0, PB);
 	while (*stack_a)
 	{
 		pos = find_pos(*stack_b, (*stack_a)->value, DESC);
 		if (pos == ERROR)
 			pos = find_pos(*stack_b, (*stack_a)->value, ASC);
-		rotate_stack(stack_b, pos);
-		pb(stack_a, stack_b);
+		rotate_stack(stack_a, stack_b, pos);
+		orchestor(stack_a, stack_b, 0, PB);
 	}
 	higher_pos = pos_of_value(*stack_b, max_value(*stack_b));
-	rotate_stack(stack_b, higher_pos);
+	rotate_stack(stack_a, stack_b, higher_pos);
 	while (*stack_b)
-		pa(stack_a, stack_b);
+		orchestor(stack_a, stack_b, 0, PA);
+	orchestor(stack_a, stack_b, PRINT, -1);
 }
