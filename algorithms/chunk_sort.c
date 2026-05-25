@@ -12,7 +12,6 @@
 
 #include "../push_swap.h"
 
-
 void	assign_index(t_stack **stack)
 {
 	int		count;
@@ -57,7 +56,7 @@ static void	mv_chunks(t_stack **stack_a, t_stack **stack_b, int size_lst)
 			pb(stack_a, stack_b);
 			++moved;
 			if ((*stack_b)->index < (limit - (len_chunk / 2)))
-                rb(stack_b);
+				rb(stack_b);
 		}
 		else
 			ra(stack_a);
