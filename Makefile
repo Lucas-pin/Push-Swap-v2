@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+         #
+#    By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/18 20:40:00 by lupin             #+#    #+#              #
-#    Updated: 2026/05/25 12:33:13 by jruiz-ag         ###   ########.fr        #
+#    Updated: 2026/05/25 22:15:18 by lupin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 SRCS = complete_test_moves.c lists/build_list.c lists/build_list_utils.c lists/linked_list_utils.c lists/linked_list.c lists/error_list.c \
 		moves/push.c moves/rotate.c moves/rev_rotate.c moves/swap.c \
-		algorithms/insertion_sort.c	algorithms/chunk_sort.c algorithms/disorder_index.c algorithms/radix_sort.c
+		algorithms/insertion_sort.c	algorithms/chunk_sort.c algorithms/disorder_index.c algorithms/radix_sort.c \
+		moves/orchestor.c
 	
 OBJ_DIR = obj
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
