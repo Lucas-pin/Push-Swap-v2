@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 19:51:15 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/23 23:44:51 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/25 22:05:02 by lupin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,16 @@ static void	rotate(t_stack **stack)
 	first->next = NULL;
 }
 
-void	ra(t_stack **stack_a)
+void	ra(t_stack **stack_a, t_stack **stack_b)
 {
+	(void)stack_b;
 	rotate(stack_a);
 	ft_printf("ra\n");
 }
 
-void	rb(t_stack **stack_b)
+void	rb(t_stack **stack_a, t_stack **stack_b)
 {
+	(void)stack_a;
 	rotate(stack_b);
 	ft_printf("rb\n");
 }

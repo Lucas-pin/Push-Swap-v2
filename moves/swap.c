@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 19:17:41 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/23 23:45:21 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/25 22:05:16 by lupin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,16 @@ static void	swap(t_stack **stack)
 	*stack = second;
 }
 
-void	sa(t_stack **stack_a)
+void	sa(t_stack **stack_a, t_stack **stack_b)
 {
+	(void)stack_b;
 	swap(stack_a);
 	ft_printf("sa\n");
 }
 
-void	sb(t_stack **stack_b)
+void	sb(t_stack **stack_a, t_stack **stack_b)
 {
+	(void)stack_a;
 	swap(stack_b);
 	ft_printf("sb\n");
 }

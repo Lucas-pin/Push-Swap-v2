@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rev_rotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 19:51:15 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/23 23:44:23 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/25 22:04:43 by lupin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,16 @@ static void	rev_rotate(t_stack **stack)
 	*stack = last;
 }
 
-void	rra(t_stack **stack_a)
+void	rra(t_stack **stack_a, t_stack **stack_b)
 {
+	(void)stack_b;
 	rev_rotate(stack_a);
 	ft_printf("rra\n");
 }
 
-void	rrb(t_stack **stack_b)
+void	rrb(t_stack **stack_a, t_stack **stack_b)
 {
+	(void)stack_a;
 	rev_rotate(stack_b);
 	ft_printf("rrb\n");
 }
