@@ -12,55 +12,11 @@
 
 #include "../push_swap.h"
 
-static int	only_digits(const char *str)
-{
-	while (*str)
-	{
-		if (!ft_isdigit((int)*str))
-			return (0);
-		++str;
-	}
-	return (1);
-}
-
-static int	is_valid(const char *str)
-{
-	long	control;
-	int		sign;
-
-	sign = 1;
-	while (*str && (*str == 32 || (*str >= 9 && *str <= 13)))
-		++str;
-	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			sign = -1;
-		++str;
-	}
-	while (*str == '0' && *(str + 1) != '\0')
-		++str;
-	if (!only_digits(str) || (ft_strlen(str) > 10) || ft_strlen(str) < 1)
-		return (0);
-	control = 0;
-	while (*str)
-		control = control * 10 + (*(str++) - '0');
-	control *= sign;
-	if ((control < INT_MIN) || (control > INT_MAX))
-		return (0);
-	return (1);
-}
-
-static int	valid_args(char **argv)
-{
-	while (*argv)
-	{
-		if (!is_valid(*argv))
-			return (0);
-		++argv;
-	}
-	return (1);
-}
-
+/**
+ * @brief Control that there is no number repeat at least twice.
+ * @param lst The stack produced.
+ * @return 0 if they are not repeated, 1 if they are.
+ */
 static int	repeat_args(const t_stack *lst)
 {
 	t_stack		*i;
@@ -84,20 +40,12 @@ static int	repeat_args(const t_stack *lst)
 t_stack	*build_list(char **argv)
 {
 	t_stack	*lst;
-	t_stack	*new;
 
 	lst = NULL;
-	if (!valid_args(argv))
-		return (NULL);
 	while (*argv)
 	{
-		new = new_node(ft_atoi(*argv));
-		if (!new)
-		{
-			free_stack(&lst);
+		if (get_argv(*argv, &lst) == ERROR)
 			return (NULL);
-		}
-		add_node_back(&lst, new);
 		++argv;
 	}
 	if (repeat_args(lst))

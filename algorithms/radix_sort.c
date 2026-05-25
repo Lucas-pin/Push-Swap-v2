@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 00:06:11 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/24 00:06:11 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/25 12:36:17 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,8 @@ static void	iter(t_stack **stack_a, t_stack **stack_b, int idx_bit, int size)
  * @param stack Pointer to any node of stack.
  * @param size The size of the list.
  */
-static void	assign_index(t_stack **stack, int size)
+static void	assign_index(t_stack **stack)
 {
-	int		min_iter;
 	int		count;
 	t_stack	*actual;
 	t_stack	*all_list;
@@ -93,7 +92,7 @@ void	radix_sort(t_stack **stack_a, t_stack **stack_b, int size)
 	int		max_length;
 	int		idx_bit;
 
-	assign_index(stack_a, size);
+	assign_index(stack_a);
 	max_length = find_max_bits(*stack_a);
 	idx_bit = 0;
 	while (idx_bit < max_length)

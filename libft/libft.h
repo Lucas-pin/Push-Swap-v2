@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 12:10:50 by lpin              #+#    #+#             */
-/*   Updated: 2026/05/24 01:15:51 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/25 12:04:04 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -497,7 +497,7 @@ char	*ft_strjoin_free_s1(char *s1, char const *s2);
  * @param split The pointer to the 2D array to be freed.
  * @return NULL.
  */
-void	*ft_split_destroyer(char **split);
+void	ft_split_destroyer(char ***split);
 
 /**
  * @brief Frees or handles deletion for a single pointer (helper).

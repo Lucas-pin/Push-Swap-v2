@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 21:05:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/24 11:55:32 by lupin            ###   ########.fr       */
+/*   Updated: 2026/05/25 12:35:11 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,5 +286,13 @@ int		error(void);
  * @param size The size of the list.
  */
 void	radix_sort(t_stack **stack_a, t_stack **stack_b, int size);
+
+/**
+ * @brief Extracts all of the numbers in a string by a safe way.
+ * @param argv The string which can contain more than one number.
+ * @param lst Pointer to any node of stack.
+ * @return 0 if all is correct, ERROR in other wat.
+ */
+int		get_argv(char *argv, t_stack **lst);
 
 #endif
