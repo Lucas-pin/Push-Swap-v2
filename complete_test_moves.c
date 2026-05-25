@@ -6,7 +6,7 @@
 /*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 14:42:35 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/25 20:59:11 by lupin            ###   ########.fr       */
+/*   Updated: 2026/05/25 22:40:55 by lupin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ static int	select_flag(char ***argv)
 	int	flag;
 
 	flag = -1;
-	if (ft_strncmp(**argv, "--simple", 9) == 0)
+	if (ft_strncmp(**argv, "--bench", 8) == 0)
+		flag = BENCH;
+	else if (ft_strncmp(**argv, "--simple", 9) == 0)
 		flag = SIMPLE;
 	else if (ft_strncmp(**argv, "--medium", 9) == 0)
 		flag = MEDIUM;
@@ -96,6 +98,11 @@ int	main(int argc, char **argv)
 	if (argc <= 1)
 		return (0);
 	flag = select_flag(&argv);
+	if (flag == BENCH)
+	{
+		orchestor(NULL, NULL, BENCH, -1);
+		flag = select_flag(&argv);
+	}
 	list_a = first_node((const t_stack *)build_list(argv));
 	if (!list_a)
 		return (error());
