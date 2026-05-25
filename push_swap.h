@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 21:05:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/25 14:15:05 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/25 22:42:52 by lupin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,30 @@ typedef enum e_options
 	MEDIUM,
 	COMPLEX,
 	ADAPTATIVE,
-	BENCH
+	BENCH,
+	PRINT
 }	t_options;
 
-typedef struct s_bench
+/**
+ * @struct s_bench
+ * @brief Structure used to store benchmarking information 
+ * for sorting operations.
+ */
+typedef enum e_move
 {
-	int	*array;
-	int	size;
-}	t_bench;
+	PA,
+	PB,
+	SA,
+	SB,
+	SS,
+	RA,
+	RB,
+	RR,
+	RRA,
+	RRB,
+	RRR,
+	TOTAL
+}	t_move;
 
 /**
  * @struct s_stack
@@ -147,14 +163,14 @@ void	pb(t_stack **stack_a, t_stack **stack_b);
  * @note It does nothing if a is empty or only has one element.
  * @param stack_a Pointer to any node of stack a.
  */
-void	sa(t_stack **stack_a);
+void	sa(t_stack **stack_a, t_stack **stack_b);
 
 /**
  * @brief Take the first two elements from stack b and swap them.
  * @note It does nothing if b is empty or only has one element.
  * @param stack_b Pointer to any node of stack b.
  */
-void	sb(t_stack **stack_b);
+void	sb(t_stack **stack_a, t_stack **stack_b);
 
 /**
  * @brief Take the first two elements from stack a and stack b and swap them.
@@ -170,7 +186,7 @@ void	ss(t_stack **stack_a, t_stack **stack_b);
  * @note It does nothing if a is empty or only has one element.
  * @param stack_a Pointer to any node of stack a.
  */
-void	ra(t_stack **stack_a);
+void	ra(t_stack **stack_a, t_stack **stack_b);
 
 /**
  * @brief Moves all of the elements in stack b up, 
@@ -178,7 +194,7 @@ void	ra(t_stack **stack_a);
  * @note It does nothing if a is empty or only has one element.
  * @param stack_a Pointer to any node of stack a.
  */
-void	rb(t_stack **stack_b);
+void	rb(t_stack **stack_a, t_stack **stack_b);
 
 /**
  * @brief Moves all of the elements in stack b and stack a up, 
@@ -195,7 +211,7 @@ void	rr(t_stack **stack_a, t_stack **stack_b);
  * @note It does nothing if a is empty or only has one element.
  * @param stack_a Pointer to any node of stack a.
  */
-void	rra(t_stack **stack_a);
+void	rra(t_stack **stack_a, t_stack **stack_b);
 
 /**
  * @brief Moves all of the elements in stack b down, 
@@ -203,7 +219,7 @@ void	rra(t_stack **stack_a);
  * @note It does nothing if a is empty or only has one element.
  * @param stack_a Pointer to any node of stack a.
  */
-void	rrb(t_stack **stack_b);
+void	rrb(t_stack **stack_a, t_stack **stack_b);
 
 /**
  * @brief Moves all of the elements in stack b and stack a down, 
@@ -248,7 +264,7 @@ int		is_order(t_stack *stack);
  * @param stack The stack to rotate
  * @param pos The position of the element to bring to the top
  */
-void	rotate_stack(t_stack **stack, int pos);
+void	rotate_stack(t_stack **stack_a, t_stack **stack_b, int pos);
 
 /**
  * @brief Find the maximum value in the stack
@@ -300,5 +316,7 @@ int		get_argv(char *argv, t_stack **lst);
  * @param stack Pointer to any node of stack.
  */
 void	assign_index(t_stack **stack);
+
+void	orchestor(t_stack **stack_a, t_stack **stack_b, int flag, t_move move);
 
 #endif
