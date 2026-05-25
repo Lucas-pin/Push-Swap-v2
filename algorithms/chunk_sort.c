@@ -36,32 +36,32 @@ void	assign_index(t_stack **stack)
 }
 
 /**
- * @brief Moves all the chunks to b, chunk by chunk.
+ * @brief Moves all the points to b, chunk by chunk.
  * @param stack_a A pointer to any node of stack a.
  * @param stack_b A pointer to any node of stack b.
- * @param len_chunk The amount of minimum numbers that are going to be moved.
+ * @param len_chunk The length of the chunk moved in each iteration.
  */
 static void	mv_chunks(t_stack **stack_a, t_stack **stack_b, int size_lst)
 {
-	int	pushed;
+	int	moved;
 	int	limit;
 	int	len_chunk;
 
-	len_chunk = 1.5 * ft_sqrt(size_lst);
+	len_chunk = ft_sqrt(size_lst);
 	limit = len_chunk - 1;
-	pushed = 0;
+	moved = 0;
 	while (*stack_a)
 	{
 		if ((*stack_a)->index <= limit)
 		{
 			pb(stack_a, stack_b);
-			++pushed;
+			++moved;
 			if ((*stack_b)->index < (limit - (len_chunk / 2)))
                 rb(stack_b);
 		}
 		else
 			ra(stack_a);
-		if (pushed == limit + 1)
+		if (moved == limit + 1)
 		{
 			limit += len_chunk;
 		}
