@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   complete_test_moves.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 14:42:35 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/24 12:56:22 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/25 19:49:06 by lupin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ static int	select_flag(char ***argv)
  */
 static int	select_by_disorder(double disorder_index)
 {
-	if (disorder_index == 0)
-		ft_printf("The stack is already ordered.\n");
 	if (disorder_index < 0.2)
 		return (SIMPLE);
 	else if (disorder_index < 0.5)
