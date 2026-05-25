@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 21:05:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/25 12:35:11 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/25 14:15:05 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,7 +220,7 @@ void	rrr(t_stack **stack_a, t_stack **stack_b);
  * @param stack_b Pointer to any node of stack b.
  * @return 0 on success, or ERROR if an error occurs.
  */
-int		insertion_sort(t_stack **stack_a, t_stack **stack_b);
+void	insertion_sort(t_stack **stack_a, t_stack **stack_b);
 
 /**
  * @brief Prints the values in the list.
@@ -269,9 +269,8 @@ int		pos_of_value(t_stack *stack, int value);
  * @brief Sorts the elements in stack a using sort by chunks.
  * @param stack_a Pointer to any node of stack a.
  * @param stack_b Pointer to any node of stack b.
- * @return 0 on success, or ERROR if an error occurs.
  */
-int		chunk_sort(t_stack **stack_a, t_stack **stack_b);
+void	chunk_sort(t_stack **stack_a, t_stack **stack_b);
 
 /**
  * @brief Print the error message and perform a correct exit.
@@ -294,5 +293,12 @@ void	radix_sort(t_stack **stack_a, t_stack **stack_b, int size);
  * @return 0 if all is correct, ERROR in other wat.
  */
 int		get_argv(char *argv, t_stack **lst);
+
+/**
+ * @brief Transform the array to simplify the numbers and use minimum bits,
+ * assigning them the relative pos in an ordered list.
+ * @param stack Pointer to any node of stack.
+ */
+void	assign_index(t_stack **stack);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 00:06:11 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/25 12:36:17 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/25 14:15:45 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,34 +57,6 @@ static void	iter(t_stack **stack_a, t_stack **stack_b, int idx_bit, int size)
 	}
 	while (*stack_b)
 		pa(stack_a, stack_b);
-}
-
-/**
- * @brief Transform the array to simplify the numbers and use minimum bits,
- * assigning them the relative pos in an ordered list.
- * @param stack Pointer to any node of stack.
- * @param size The size of the list.
- */
-static void	assign_index(t_stack **stack)
-{
-	int		count;
-	t_stack	*actual;
-	t_stack	*all_list;
-
-	actual = *stack;
-	while (actual)
-	{
-		count = 0;
-		all_list = *stack;
-		while (all_list)
-		{
-			if (actual->value > all_list->value)
-				++count;
-			all_list = all_list->next;
-		}
-		actual->index = count;
-		actual = actual->next;
-	}
 }
 
 void	radix_sort(t_stack **stack_a, t_stack **stack_b, int size)

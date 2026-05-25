@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 14:42:35 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/24 12:56:22 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/25 14:14:44 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,9 @@ static int	select_by_disorder(double disorder_index)
 static int	launch_algorithm(t_stack **stack_a, t_stack **stack_b, int flag)
 {
 	if (flag == SIMPLE)
-	{
-		if (insertion_sort(stack_a, stack_b) == ERROR)
-			return (ERROR);
-	}
+		insertion_sort(stack_a, stack_b);
 	else if (flag == MEDIUM)
-	{
-		if (chunk_sort(stack_a, stack_b) == ERROR)
-			return (ERROR);
-	}
+		chunk_sort(stack_a, stack_b);
 	else if (flag == COMPLEX)
 		radix_sort(stack_a, stack_b, lst_size(*stack_a));
 	return (0);
