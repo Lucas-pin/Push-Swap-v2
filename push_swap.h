@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 21:05:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/25 14:15:05 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/27 18:49:35 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,19 @@ typedef enum e_options
 
 typedef struct s_bench
 {
-	int	*array;
-	int	size;
+	double	disorder_idx;
+	char	*strategy;
+	int		sa;
+	int		sb;
+	int		ss;
+	int		pa;
+	int		pb;
+	int		ra;
+	int		rb;
+	int		rr;
+	int		rra;
+	int		rrb;
+	int		rrr;
 }	t_bench;
 
 /**
@@ -131,54 +142,61 @@ t_stack	*build_list(char **argv);
  * @note It does nothing if b is empty.
  * @param stack_a Pointer to any node of stack a.
  * @param stack_b Pointer to any node of stack b.
+ * @param ctr The struct to do the benchmark.
  */
-void	pa(t_stack **stack_a, t_stack **stack_b);
+void	pa(t_stack **stack_a, t_stack **stack_b, t_bench *ctr);
 
 /**
  * @brief Take the first element from stack a and place it at the top of stack b.
  * @note It does nothing if a is empty.
  * @param stack_a Pointer to any node of stack a.
  * @param stack_b Pointer to any node of stack b.
+ * @param ctr The struct to do the benchmark.
  */
-void	pb(t_stack **stack_a, t_stack **stack_b);
+void	pb(t_stack **stack_a, t_stack **stack_b, t_bench *ctr);
 
 /**
  * @brief Take the first two elements from stack a and swap them.
  * @note It does nothing if a is empty or only has one element.
  * @param stack_a Pointer to any node of stack a.
+ * @param ctr The struct to do the benchmark.
  */
-void	sa(t_stack **stack_a);
+void	sa(t_stack **stack_a, t_bench *ctr);
 
 /**
  * @brief Take the first two elements from stack b and swap them.
  * @note It does nothing if b is empty or only has one element.
  * @param stack_b Pointer to any node of stack b.
+ * @param ctr The struct to do the benchmark.
  */
-void	sb(t_stack **stack_b);
+void	sb(t_stack **stack_b, t_bench *ctr);
 
 /**
  * @brief Take the first two elements from stack a and stack b and swap them.
  * @note It swap any stack if has at least two elements.
  * @param stack_a Pointer to any node of stack a. 
  * @param stack_b Pointer to any node of stack b.
+ * @param ctr The struct to do the benchmark.
  */
-void	ss(t_stack **stack_a, t_stack **stack_b);
+void	ss(t_stack **stack_a, t_stack **stack_b, t_bench *ctr);
 
 /**
  * @brief Moves all of the elements in stack a up, 
  * making the first element the last.
  * @note It does nothing if a is empty or only has one element.
  * @param stack_a Pointer to any node of stack a.
+ * @param ctr The struct to do the benchmark.
  */
-void	ra(t_stack **stack_a);
+void	ra(t_stack **stack_a, t_bench *ctr);
 
 /**
  * @brief Moves all of the elements in stack b up, 
  * making the first element the last.
  * @note It does nothing if a is empty or only has one element.
  * @param stack_a Pointer to any node of stack a.
+ * @param ctr The struct to do the benchmark.
  */
-void	rb(t_stack **stack_b);
+void	rb(t_stack **stack_b, t_bench *ctr);
 
 /**
  * @brief Moves all of the elements in stack b and stack a up, 
@@ -186,24 +204,27 @@ void	rb(t_stack **stack_b);
  * @note It rotate any stack if has at least two elements.
  * @param stack_a Pointer to any node of stack a. 
  * @param stack_b Pointer to any node of stack b.
+ * @param ctr The struct to do the benchmark.
  */
-void	rr(t_stack **stack_a, t_stack **stack_b);
+void	rr(t_stack **stack_a, t_stack **stack_b, t_bench *ctr);
 
 /**
  * @brief Moves all of the elements in stack a down, 
  * making the last element the first.
  * @note It does nothing if a is empty or only has one element.
  * @param stack_a Pointer to any node of stack a.
+ * @param ctr The struct to do the benchmark.
  */
-void	rra(t_stack **stack_a);
+void	rra(t_stack **stack_a, t_bench *ctr);
 
 /**
  * @brief Moves all of the elements in stack b down, 
  * making the last element the first.
  * @note It does nothing if a is empty or only has one element.
  * @param stack_a Pointer to any node of stack a.
+ * @param ctr The struct to do the benchmark.
  */
-void	rrb(t_stack **stack_b);
+void	rrb(t_stack **stack_b, t_bench *ctr);
 
 /**
  * @brief Moves all of the elements in stack b and stack a down, 
@@ -211,16 +232,18 @@ void	rrb(t_stack **stack_b);
  * @note It reversed rotate any stack if has at least two elements.
  * @param stack_a Pointer to any node of stack a. 
  * @param stack_b Pointer to any node of stack b.
+ * @param ctr The struct to do the benchmark.
  */
-void	rrr(t_stack **stack_a, t_stack **stack_b);
+void	rrr(t_stack **stack_a, t_stack **stack_b, t_bench *ctr);
 
 /**
  * @brief Sorts the elements in stack a using insertion sort algorithm.
  * @param stack_a Pointer to any node of stack a.
  * @param stack_b Pointer to any node of stack b.
+ * @param control The struct to do the benchmark.
  * @return 0 on success, or ERROR if an error occurs.
  */
-void	insertion_sort(t_stack **stack_a, t_stack **stack_b);
+void	insertion_sort(t_stack **stack_a, t_stack **stack_b, t_bench *control);
 
 /**
  * @brief Prints the values in the list.
@@ -248,7 +271,7 @@ int		is_order(t_stack *stack);
  * @param stack The stack to rotate
  * @param pos The position of the element to bring to the top
  */
-void	rotate_stack(t_stack **stack, int pos);
+void	rotate_stack(t_stack **stack, int pos, t_bench *control);
 
 /**
  * @brief Find the maximum value in the stack
@@ -269,8 +292,9 @@ int		pos_of_value(t_stack *stack, int value);
  * @brief Sorts the elements in stack a using sort by chunks.
  * @param stack_a Pointer to any node of stack a.
  * @param stack_b Pointer to any node of stack b.
+ * @param control The struct to do the benchmark.
  */
-void	chunk_sort(t_stack **stack_a, t_stack **stack_b);
+void	chunk_sort(t_stack **stack_a, t_stack **stack_b, t_bench *control);
 
 /**
  * @brief Print the error message and perform a correct exit.
@@ -282,9 +306,9 @@ int		error(void);
  * @brief Sorts the elements in stack a using sort by radix.
  * @param stack_a Pointer to any node of stack a.
  * @param stack_b Pointer to any node of stack b.
- * @param size The size of the list.
+ * @param control The struct to do the benchmark.
  */
-void	radix_sort(t_stack **stack_a, t_stack **stack_b, int size);
+void	radix_sort(t_stack **stack_a, t_stack **stack_b, t_bench *control);
 
 /**
  * @brief Extracts all of the numbers in a string by a safe way.
@@ -300,5 +324,27 @@ int		get_argv(char *argv, t_stack **lst);
  * @param stack Pointer to any node of stack.
  */
 void	assign_index(t_stack **stack);
+
+/**
+ * @brief Initialize the structure to count the benchmark.
+ * @param bench Pointer to the control struct.
+ * @param disorder_idx Grade of disorder of the list.
+ * @param flag Represent the algorithm chosen.
+ */
+void	initialize_bench(t_bench *bench, double disorder_idx, int flag);
+
+/**
+ * @brief Print the benchmark result.
+ * @param bench Pointer to the control struct.
+ */
+void	print_bench(t_bench *bench);
+
+/**
+ * @brief Controll a safe exit by freeing both stacks
+ * @param stack_a Pointer to any node of stack a.
+ * @param stack_b Pointer to any node of stack b.
+ * @param status The exit status.
+ */
+void	free_both(t_stack **stack_a, t_stack **stack_b, int status);
 
 #endif

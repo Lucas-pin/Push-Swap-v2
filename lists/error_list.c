@@ -17,3 +17,12 @@ int	error(void)
 	ft_printf("Error\n");
 	return (ERROR);
 }
+
+void	free_both(t_stack **stack_a, t_stack **stack_b, int status)
+{
+	free_stack(stack_a);
+	free_stack(stack_b);
+	if (status == ERROR)
+		ft_printf("Error\n");
+	exit(status);
+}

@@ -40,26 +40,26 @@ void	assign_index(t_stack **stack)
  * @param stack_b A pointer to any node of stack b.
  * @param len_chunk The length of the chunk moved in each iteration.
  */
-static void	mv_chunks(t_stack **stack_a, t_stack **stack_b, int size_lst)
+static void	mv_chunks(t_stack **stack_a, t_stack **stack_b, t_bench *ctr)
 {
 	int	moved;
 	int	limit;
 	int	len_chunk;
 
-	len_chunk = ft_sqrt(size_lst);
+	len_chunk = ft_sqrt(lst_size(*stack_a));
 	limit = len_chunk - 1;
 	moved = 0;
 	while (*stack_a)
 	{
 		if ((*stack_a)->index <= limit)
 		{
-			pb(stack_a, stack_b);
+			pb(stack_a, stack_b, ctr);
 			++moved;
 			if ((*stack_b)->index < (limit - (len_chunk / 2)))
-				rb(stack_b);
+				rb(stack_b, ctr);
 		}
 		else
-			ra(stack_a);
+			ra(stack_a, ctr);
 		if (moved == limit + 1)
 		{
 			limit += len_chunk;
@@ -67,16 +67,16 @@ static void	mv_chunks(t_stack **stack_a, t_stack **stack_b, int size_lst)
 	}
 }
 
-void	chunk_sort(t_stack **stack_a, t_stack **stack_b)
+void	chunk_sort(t_stack **stack_a, t_stack **stack_b, t_bench *ctr)
 {
 	int	pos;
 
 	assign_index(stack_a);
-	mv_chunks(stack_a, stack_b, lst_size(*stack_a));
+	mv_chunks(stack_a, stack_b, ctr);
 	while (*stack_b)
 	{
 		pos = pos_of_value(*stack_b, max_value(*stack_b));
-		rotate_stack(stack_b, pos);
-		pa(stack_a, stack_b);
+		rotate_stack(stack_b, pos, ctr);
+		pa(stack_a, stack_b, ctr);
 	}
 }
