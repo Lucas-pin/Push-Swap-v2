@@ -6,7 +6,7 @@
 /*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 14:42:35 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/25 19:49:06 by lupin            ###   ########.fr       */
+/*   Updated: 2026/05/27 22:32:13 by lupin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * @param stack Pointer to the strings of argv.
  * @return -1, 0, 1, 2 or 3 depending on the algorithm selected.
  */
-static int	select_flag(char ***argv)
+static int	select_flag(char ***argv, int first_arg)
 {
 	int	flag;
 
@@ -30,6 +30,8 @@ static int	select_flag(char ***argv)
 		flag = COMPLEX;
 	else if (ft_strncmp(**argv, "--adaptative", 13) == 0)
 		flag = ADAPTATIVE;
+	else if ((ft_strncmp(**argv, "--bench", 8) == 0) && first_arg)
+		flag = BENCH;
 	if (flag != -1)
 		++(*argv);
 	else
@@ -54,63 +56,67 @@ static int	select_by_disorder(double disorder_index)
 
 /**
  * @brief Depend on the flag given launch any of the three algorithms.
- * @param stack_a Pointer to any node of stack a.
- * @param stack_b Pointer to any node of stack b.
+ * @param s_a Pointer to any node of stack a.
+ * @param s_b Pointer to any node of stack b.
  * @param flag The flag which is the algorithm selected.
  * @return 0 is all is okey, ERROR in other cases.
  */
-static int	launch_algorithm(t_stack **stack_a, t_stack **stack_b, int flag)
+static int	algorithm(t_stack **s_a, t_stack **s_b, int flag, t_bench *control)
 {
+	if (compute_disorder(*s_a) == 0)
+		return (0);
 	if (flag == SIMPLE)
-	{
-		if (insertion_sort(stack_a, stack_b) == ERROR)
-			return (ERROR);
-	}
+		insertion_sort(s_a, s_b, control);
 	else if (flag == MEDIUM)
-	{
-		if (chunk_sort(stack_a, stack_b) == ERROR)
-			return (ERROR);
-	}
+		chunk_sort(s_a, s_b, control);
 	else if (flag == COMPLEX)
-		radix_sort(stack_a, stack_b, lst_size(*stack_a));
+		radix_sort(s_a, s_b, control);
 	return (0);
 }
 
 /**
- * @brief Controll a safe exit by freeing both stacks
- * @param stack_a Pointer to any node of stack a.
- * @param stack_b Pointer to any node of stack b.
- * @param status The exit status.
+ * @brief Reduce number of lines of main.
+ * @param argv Pointer to all of the strings given.
+ * @param argc Number of strings given
+ * @param flag The flag which is the algorithm selected.
+ * @param bench The flag to control if the benchmark is used.
+ * @return 0 is all is okey, -1 if there is no args.
  */
-static void	free_both(t_stack **stack_a, t_stack **stack_b, int status)
+static int	aux_main(char ***argv, int argc, int *flag, int *bench)
 {
-	free_stack(stack_a);
-	free_stack(stack_b);
-	if (status == ERROR)
-		ft_printf("Error\n");
-	exit(status);
+	++(*argv);
+	if (argc <= 1)
+		return (-1);
+	*flag = select_flag(argv, 1);
+	*bench = 0;
+	if (*flag == BENCH)
+	{
+		*bench = 1;
+		*flag = select_flag(argv, 0);
+	}
+	return (0);
 }
 
 int	main(int argc, char **argv)
 {
+	t_bench	control;
 	t_stack	*list_a;
 	t_stack	*list_b;
-	double	dis_index;
+	int		bench;
 	int		flag;
 
-	++argv;
-	if (argc <= 1)
+	if (aux_main(&argv, argc, &flag, &bench))
 		return (0);
-	flag = select_flag(&argv);
 	list_a = first_node((const t_stack *)build_list(argv));
 	if (!list_a)
 		return (error());
-	list_b = NULL;
-	dis_index = compute_disorder(list_a);
+	initialize_bench(&control, compute_disorder(list_a), flag);
 	if (flag == ADAPTATIVE)
-		flag = select_by_disorder(dis_index);
-	if ((dis_index != 0) && (launch_algorithm(&list_a, &list_b, flag) == ERROR))
+		flag = select_by_disorder(compute_disorder(list_a));
+	list_b = NULL;
+	if (algorithm(&list_a, &list_b, flag, &control) == ERROR)
 		free_both(&list_a, &list_b, ERROR);
+	if (bench == 1)
+		print_bench(&control);
 	free_both(&list_a, &list_b, 0);
-	return (0);
 }
