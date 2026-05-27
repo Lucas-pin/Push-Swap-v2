@@ -6,12 +6,16 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 19:17:41 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/23 23:45:21 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/27 19:00:25 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
+/**
+ * @brief Swap the first two elements of a stack.
+ * @param stack Pointer to any node of the stack.
+ */
 static void	swap(t_stack **stack)
 {
 	t_stack	*first;
@@ -28,21 +32,24 @@ static void	swap(t_stack **stack)
 	*stack = second;
 }
 
-void	sa(t_stack **stack_a)
+void	sa(t_stack **stack_a, t_bench *ctr)
 {
 	swap(stack_a);
+	(ctr->sa)++;
 	ft_printf("sa\n");
 }
 
-void	sb(t_stack **stack_b)
+void	sb(t_stack **stack_b, t_bench *ctr)
 {
 	swap(stack_b);
+	(ctr->sb)++;
 	ft_printf("sb\n");
 }
 
-void	ss(t_stack **stack_a, t_stack **stack_b)
+void	ss(t_stack **stack_a, t_stack **stack_b, t_bench *ctr)
 {
 	swap(stack_a);
 	swap(stack_b);
+	(ctr->ss)++;
 	ft_printf("ss\n");
 }
