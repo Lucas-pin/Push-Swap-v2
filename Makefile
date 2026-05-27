@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+         #
+#    By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/18 20:40:00 by lupin             #+#    #+#              #
-#    Updated: 2026/05/27 18:22:29 by jruiz-ag         ###   ########.fr        #
+#    Updated: 2026/05/27 23:46:49 by lupin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,14 +17,21 @@ SRCS = complete_test_moves.c lists/build_list.c lists/build_list_utils.c lists/l
 		lists/linked_list.c lists/error_list.c lists/bench_utils.c \
 		moves/push.c moves/rotate.c moves/rev_rotate.c moves/swap.c \
 		algorithms/insertion_sort.c	algorithms/chunk_sort.c algorithms/disorder_index.c algorithms/radix_sort.c
-	
-OBJ_DIR = obj
+
+OBJ_DIR = bonus/obj
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 HEADER = push_swap.h
 NAME = push_swap
-LIBFT = libft/libft.a
+
+BONUS_SRCS = bonus/checker_bonus.c bonus/lists/build_list_bonus.c bonus/lists/build_list_utils_bonus.c bonus/lists/error_list_bonus.c \
+			bonus/lists/linked_list_bonus.c bonus/lists/linked_list_utils_bonus.c \
+			bonus/moves/push_bonus.c bonus/moves/rev_rotate_bonus.c bonus/moves/rotate_bonus.c bonus/moves/swap_bonus.c
+BONUS_OBJ_DIR = obj_bonus
+BONUS_OBJS = $(BONUS_SRCS:%.c=$(BONUS_OBJ_DIR)/%.o)
+BONUS_HEADER = bonus/push_swap_bonus.h
 
 RM = rm -rf
+LIBFT = libft/libft.a
 
 # All needs to be always the first rule
 all: $(LIBFT) $(NAME)
@@ -64,4 +71,12 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all run valgrind clean fclean re
+bonus: $(BONUS_OBJS) $(LIBFT) $(BONUS_HEADER)
+	$(CC) $(CFLAGS) -o checker $(BONUS_OBJS) $(LIBFT)
+
+# Object compilation in a hide directory
+$(BONUS_OBJ_DIR)/%.o: %.c $(BONUS_HEADER)
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+.PHONY: all run valgrind clean fclean re bonus
