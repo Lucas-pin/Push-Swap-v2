@@ -29,6 +29,8 @@ static void	swap(t_stack **stack)
 	first->prev = second;
 	second->next = first;
 	second->prev = NULL;
+	if (first->next)
+		first->next->prev = first;
 	*stack = second;
 }
 
