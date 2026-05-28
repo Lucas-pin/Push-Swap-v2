@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 12:54:58 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/28 13:42:31 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/28 13:57:46 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ static int	min_value(t_stack *stack)
 
 static void	five_sort(t_stack **stack_a, t_stack **stack_b, t_bench *ctr)
 {
-	int val;
-	int pos;
+	int	val;
+	int	pos;
 
 	val = min_value(*stack_a);
 	pos = pos_of_value(*stack_a, val);

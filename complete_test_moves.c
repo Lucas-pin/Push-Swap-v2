@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 14:42:35 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/28 13:49:39 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/28 13:57:13 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int	main(int argc, char **argv)
 	initialize_bench(&control, compute_disorder(list_a), flag);
 	if (flag == ADAPTATIVE)
 	{
-		if(lst_size(list_a) <= 5)
+		if (lst_size(list_a) <= 5)
 			small_sort(&list_a, &list_b, &control);
 		flag = select_by_disorder(compute_disorder(list_a));
 	}

@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 21:11:11 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/27 19:00:24 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/28 13:57:28 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static t_stack	*push_isolate(t_stack **lst)
 	aux->next = NULL;
 	return (aux);
 }
+
 /**
  * @brief Push the first node of src to the beggining of dst.
  * @param dst Pointer to any node of the stack destination.
