@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 21:05:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/27 18:49:35 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/28 13:40:18 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,9 +269,11 @@ int		is_order(t_stack *stack);
  * @brief Rotate the stack to bring the element 
  * at the specified position to the top
  * @param stack The stack to rotate
- * @param pos The position of the element to bring to the top
+ * @param pos The position of the element to bring to the top.
+ * @param control The benchmar to control the movements.
+ * @param elec The stack selected for the move.
  */
-void	rotate_stack(t_stack **stack, int pos, t_bench *control);
+void	rotate_stack(t_stack **stack, int pos, t_bench *control, char elec);
 
 /**
  * @brief Find the maximum value in the stack
@@ -340,11 +342,19 @@ void	initialize_bench(t_bench *bench, double disorder_idx, int flag);
 void	print_bench(t_bench *bench);
 
 /**
- * @brief Controll a safe exit by freeing both stacks
+ * @brief Control a safe exit by freeing both stacks.
  * @param stack_a Pointer to any node of stack a.
  * @param stack_b Pointer to any node of stack b.
  * @param status The exit status.
  */
 void	free_both(t_stack **stack_a, t_stack **stack_b, int status);
+
+/**
+ * @brief Order the list in the best way when its small.
+ * @param stack_a Pointer to any node of stack a.
+ * @param stack_b Pointer to any node of stack b.
+ * @param ctr The bench struct where we control the movements.
+ */
+void	small_sort(t_stack **stack_a, t_stack **stack_b, t_bench *ctr);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 22:19:28 by lupin             #+#    #+#             */
-/*   Updated: 2026/05/27 18:14:37 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/28 13:40:12 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	max_value(t_stack *stack)
 	return (max);
 }
 
-void	rotate_stack(t_stack **stack, int pos, t_bench *ctr)
+void	rotate_stack(t_stack **stack, int pos, t_bench *ctr, char elec)
 {
 	int	size;
 	int	count;
@@ -70,13 +70,21 @@ void	rotate_stack(t_stack **stack, int pos, t_bench *ctr)
 	{
 		count = pos;
 		while (count-- > 0)
-			rb(stack, ctr);
+		{
+			if (elec == 'b')
+				rb(stack, ctr);
+			else
+				ra(stack, ctr);
+		}
+		return ;
 	}
-	else
+	count = size - pos;
+	while (count-- > 0)
 	{
-		count = size - pos;
-		while (count-- > 0)
+		if (elec == 'b')
 			rrb(stack, ctr);
+		else
+			rra(stack, ctr);
 	}
 }
 
@@ -91,11 +99,11 @@ void	insertion_sort(t_stack **stack_a, t_stack **stack_b, t_bench *ctr)
 		pos = find_pos(*stack_b, (*stack_a)->value, DESC);
 		if (pos == ERROR)
 			pos = find_pos(*stack_b, (*stack_a)->value, ASC);
-		rotate_stack(stack_b, pos, ctr);
+		rotate_stack(stack_b, pos, ctr, 'b');
 		pb(stack_a, stack_b, ctr);
 	}
 	higher_pos = pos_of_value(*stack_b, max_value(*stack_b));
-	rotate_stack(stack_b, higher_pos, ctr);
+	rotate_stack(stack_b, higher_pos, ctr, 'b');
 	while (*stack_b)
 		pa(stack_a, stack_b, ctr);
 }

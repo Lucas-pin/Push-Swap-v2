@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   complete_test_moves.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+        */
+/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 14:42:35 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/27 22:38:30 by lupin            ###   ########.fr       */
+/*   Updated: 2026/05/28 13:07:59 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,14 @@ int	main(int argc, char **argv)
 	list_a = first_node((const t_stack *)build_list(argv));
 	if (!list_a)
 		return (error());
+	list_b = NULL;
 	initialize_bench(&control, compute_disorder(list_a), flag);
 	if (flag == ADAPTATIVE)
+	{
+		if(lst_size(list_a) <= 5)
+			small_sort(&list_a, &list_b, &control);
 		flag = select_by_disorder(compute_disorder(list_a));
-	list_b = NULL;
+	}
 	if (algorithm(&list_a, &list_b, flag, &control) == ERROR)
 		free_both(&list_a, &list_b, ERROR);
 	if (bench == 1)

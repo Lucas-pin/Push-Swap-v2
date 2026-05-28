@@ -76,7 +76,7 @@ void	chunk_sort(t_stack **stack_a, t_stack **stack_b, t_bench *ctr)
 	while (*stack_b)
 	{
 		pos = pos_of_value(*stack_b, max_value(*stack_b));
-		rotate_stack(stack_b, pos, ctr);
+		rotate_stack(stack_b, pos, ctr, 'b');
 		pa(stack_a, stack_b, ctr);
 	}
 }
