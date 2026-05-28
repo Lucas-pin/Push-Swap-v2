@@ -6,7 +6,7 @@
 /*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 14:42:35 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/28 13:07:59 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/28 13:49:39 by jruiz-ag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	select_flag(char ***argv, int first_arg)
 		flag = MEDIUM;
 	else if (ft_strncmp(**argv, "--complex", 10) == 0)
 		flag = COMPLEX;
-	else if (ft_strncmp(**argv, "--adaptative", 13) == 0)
+	else if (ft_strncmp(**argv, "--adaptive", 11) == 0)
 		flag = ADAPTATIVE;
 	else if ((ft_strncmp(**argv, "--bench", 8) == 0) && first_arg)
 		flag = BENCH;
