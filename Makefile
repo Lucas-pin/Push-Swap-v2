@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lupin <lupin@student.42malaga.com>         +#+  +:+       +#+         #
+#    By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/18 20:40:00 by lupin             #+#    #+#              #
-#    Updated: 2026/05/27 23:46:49 by lupin            ###   ########.fr        #
+#    Updated: 2026/05/28 11:53:52 by jruiz-ag         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ OBJ_DIR = bonus/obj
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 HEADER = push_swap.h
 NAME = push_swap
+NAME_BONUS = checker
 
 BONUS_SRCS = bonus/checker_bonus.c bonus/lists/build_list_bonus.c bonus/lists/build_list_utils_bonus.c bonus/lists/error_list_bonus.c \
 			bonus/lists/linked_list_bonus.c bonus/lists/linked_list_utils_bonus.c \
@@ -67,12 +68,13 @@ clean:
 fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) $(LIBFT)
+	@$(RM) $(NAME_BONUS)
 	@echo "Full clean done"
 
 re: fclean all
 
 bonus: $(BONUS_OBJS) $(LIBFT) $(BONUS_HEADER)
-	$(CC) $(CFLAGS) -o checker $(BONUS_OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) -o $(NAME_BONUS) $(BONUS_OBJS) $(LIBFT)
 
 # Object compilation in a hide directory
 $(BONUS_OBJ_DIR)/%.o: %.c $(BONUS_HEADER)
