@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+         #
+#    By: lpin <lpin@student.42malaga.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/18 20:40:00 by lupin             #+#    #+#              #
-#    Updated: 2026/05/28 13:08:31 by jruiz-ag         ###   ########.fr        #
+#    Updated: 2026/05/30 10:44:30 by lpin             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = complete_test_moves.c lists/build_list.c lists/build_list_utils.c lists/linked_list_utils.c \
+SRCS = push_swap.c lists/build_list.c lists/build_list_utils.c lists/linked_list_utils.c \
 		lists/linked_list.c lists/error_list.c lists/bench_utils.c \
 		moves/push.c moves/rotate.c moves/rev_rotate.c moves/swap.c \
 		algorithms/insertion_sort.c	algorithms/chunk_sort.c algorithms/disorder_index.c algorithms/radix_sort.c algorithms/small_sort.c
