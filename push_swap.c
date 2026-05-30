@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   complete_test_moves.c                              :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jruiz-ag <jruiz-ag@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: lpin <lpin@student.42malaga.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 14:42:35 by jruiz-ag          #+#    #+#             */
-/*   Updated: 2026/05/28 13:57:13 by jruiz-ag         ###   ########.fr       */
+/*   Updated: 2026/05/30 10:31:49 by lpin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static int	algorithm(t_stack **s_a, t_stack **s_b, int flag, t_bench *control)
  * @param bench The flag to control if the benchmark is used.
  * @return 0 is all is okey, -1 if there is no args.
  */
-static int	aux_main(char ***argv, int argc, int *flag, int *bench)
+static int	extract_flag(char ***argv, int argc, int *flag, int *bench)
 {
 	++(*argv);
 	if (argc <= 1)
@@ -105,7 +105,7 @@ int	main(int argc, char **argv)
 	int		bench;
 	int		flag;
 
-	if (aux_main(&argv, argc, &flag, &bench))
+	if (extract_flag(&argv, argc, &flag, &bench))
 		return (0);
 	list_a = first_node((const t_stack *)build_list(argv));
 	if (!list_a)
